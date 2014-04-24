@@ -22,8 +22,8 @@ function load_product_details()
 			//generated the entory
             $build .= "<h3 class=\"product_title\">".$row['club']."</h3>";
 			$build .= "<div>";
-            $build .= "<p class=\"product_image\"><img src=\"images/".$row['product_id'].".jpg\">";
-            $build .= "<p class=\"product_details\"><b>Details: </b>".$row['details']."</p>"; 		
+            $build .= "<p class=\"product_image\"><img src=\"images/".$row['product_id'].".jpg\" align=\"left\" hspace=\"10\" /></p>";
+            $build .= "<p class=\"product_details\"><b>Details: </b><br>".$row['details']."</p>"; 		
             $build .= "</div>";
         }
     }
@@ -39,6 +39,7 @@ function load_product_details()
 <link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
 <script src="//code.jquery.com/jquery-1.10.2.js"></script>
 <script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+<link rel="stylesheet" href="css/jdm.css">
 <script>
 	//jquery_ui pre-defined function
 	$(function() {
