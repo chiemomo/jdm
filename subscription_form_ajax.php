@@ -9,11 +9,15 @@ if($_POST and $_GET)
 		//Assign variables and sanitize POST data
 		$customer = mysql_real_escape_string($_POST['customer']);
 		$email = mysql_real_escape_string($_POST['email']);
+		$club = mysql_real_escape_string($_POST['club']);
+		$shaft = mysql_real_escape_string($_POST['shaft']);
+		$subscribe = $_POST['subscribe'];
 	 
 		//Build our query statement
-		$query = "INSERT INTO ".TABLE_INQUIRIES."(customer, email, time) VALUES ('".$customer."', '".$email."', now());";
+		$query = "INSERT INTO ".TABLE_INQUIRIES."(customer, email, club, shaft, subscribe, time) VALUES ('".$customer."', '".$email."', '".$club."', '".$shaft."', '".$subscribe."', now());";
 		mysql_query($query) or die(mysql_error());
 		
+		//After the $_POST data is processed, we use the exit() function because we don't need to actually show the page as the request is made in the background
 		exit();
 	}
 }
@@ -32,11 +36,8 @@ if($_POST and $_GET)
 $(function()
 {
 
-	/* define an array holding the strings that will be used for auto-completion */
-	var availableTags = [
-		
-		
-	];
+	/* AUTO-COMPLETION for CLUBs - define an array holding the strings that will be used for auto-completion in the club field. */
+	var availableClubs = [ ];
 	
 	$.ajax(
 		{
@@ -49,42 +50,70 @@ $(function()
 				/* use JSON's function to parse the response */
 				var parsed_response = JSON.parse(response);
 				
-				/* retrieve the words array that is part of the response. Why is it called "words"? Because that is how we called it in generate_words.php */
-				availableTags = parsed_response.club;
+				/* retrieve the club array that is part of the response. */
+				availableClubs = parsed_response.club;
 				
-				
-				/* select the HTML element with id="tags" and call the autocomplete() function from the jquery UI library */
-				$( "#tags" ).autocomplete({
-					source: availableTags
+				/* select the HTML element with id="club" and call the autocomplete() function from the jquery UI library */
+				$( "#club" ).autocomplete({
+					source: availableClubs
 				});
 			}
 		}
 	);
 
+	/* AUTO-COMPLETION for SHAFTs - define an array holding the strings that will be used for auto-completion in the shaft field. */
+	var availableShafts = [ ];
+	
+	$.ajax(
+		{
+			type: "POST",
+			url: "generate_shaft.php", 
+			data: "",
+			success: function(response)
+			{
+				
+				/* use JSON's function to parse the response */
+				var parsed_response = JSON.parse(response);
+				
+				/* retrieve the shaft array that is part of the response. */
+				availableShafts = parsed_response.shaft;
+				
+				/* select the HTML element with id="shaft" and call the autocomplete() function from the jquery UI library */
+				$( "#shaft" ).autocomplete({
+					source: availableShafts
+				});
+			}
+		}
+	);
+
+	//SUBMIT form
 	$(".submit").click(function()
     {
         
 		//create variables to store the data entered into the form
 		var customer = $("#customer").val();
         var email = $("#email").val();     
-
+        var club = $("#club").val();     
+        var shaft = $("#shaft").val();
+        var subscribe = $("#subscribe").val();
+		
+		if(document.getElementById("subscribe").checked){
+			document.getElementById("subscribeHidden").disabled = true;
+		}
+		
         //Check for empty values
-        if(customer == '' || email == '')
+        if(customer == '' || email == '' || club == '' || shaft == '')
         {
 			//show the html error message where div.error if there is empty field
-			$('.error').fadeIn(400).show().html('Please fill in both fields.'); 
+			$('.error').fadeIn(400).show().html('Please fill required fields.'); 
         }
         else
         {
 			//construct the data string to insert the table	
-			var datastring = "customer=" + customer + "&email=" + email;
+			var datastring = "customer=" + customer + "&email=" + email + "&club=" + club + "&shaft=" + shaft +"&subscribe=" + subscribe;
  
-			/*
-				Make the AJAX request. The request is made to $_SERVER['PHP_SELF']
-				The request is handled by checking for $_POST data -- see line 6
-				After the $_POST data is processed, we use the exit() function because we don't need to actually
-				show the page as the request is made in the background
-			*/
+			/* AJAX request. The request is made to $_SERVER['PHP_SELF']
+			The request is handled by checking for $_POST data (line 5)	*/
 			$.ajax( 
 				{
 				type: "POST",
@@ -94,6 +123,8 @@ $(function()
 					{
 						$('#customer').val(''); //Clear out val from text box
 						$('#email').val(''); //Clear out val from text box
+						$('#club').val(''); //Clear out val from text box
+						$('#shaft').val(''); //Clear out val from text box
 						$('.success').fadeIn(2000).show().html('Thanks ' +customer + ', your request has been submitted successfully!').fadeOut(6000); //Show, then hide success msg
 						$('.error').fadeOut(2000).hide(); //If showing error, fade out
 						
@@ -122,16 +153,27 @@ $(function()
 <form method="post" name="form" id="form">
  
 <div class="ui-widget">
-	<label for="tags">Tags: </label>
-	<input id="tags">
+	<label for="club">Clubs: </label>
+	<input id="club">
 </div>
 
-    <p><label>Full Name: </label>
-    <input type="text" id="customer" name="customer" /></p>
-    <p><label>Email Address: </label>
-    <input type="text" id="email" name="email" /></p>
-    <p><button type="submit" class="submit" value="insert">Subscribe</button></p>
-</form>
+<div class="ui-widget">
+	<label for="shaft">Shafts: </label>
+	<input id="shaft">
+</div>
+
+<p><label>Full Name: </label>
+<input type="text" id="customer" name="customer" /></p>
+
+<p><label>Email Address: </label>
+<input type="text" id="email" name="email" /></p>
+
+<input type="checkbox" id="subscribe" name="subscribe" value="yes" checked>Subscribe Newsletter
+<input type="hidden" id="subscribeHidden" name="subscribeHidden" value="no">
+
+<p><button type="submit" class="submit" value="submit">Get A Quote!</button></p>
+
+ </form>
 
 <p>
 <span class="success" style="display:none;"></span>

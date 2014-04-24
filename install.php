@@ -38,7 +38,28 @@ if($insert_products)
 	echo "Table TABLE_PRODUCTS populated successfully<br>";
 }
 
-		
+//create a table to contain shaft data
+$install_products = mysql_query("CREATE TABLE IF NOT EXISTS " . TABLE_SHAFTS . "(
+	id int(11) NOT NULL AUTO_INCREMENT,
+	product_id varchar(220),
+	upc varchar(220),
+	sku varchar(220),
+	shaft varchar(220),
+	brand varchar(220),
+	category varchar(220),
+	price decimal(13,2),
+	cost decimal(13,2),
+	status varchar(220),
+	details varchar(220),
+	time timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE CURRENT_TIMESTAMP,
+	PRIMARY KEY(id)
+	) ENGINE=InnoDB DEFAULT CHARSET=utf8;") or die("Error creating table TABLE_SHAFTS:" . mysql_error());
+
+if($install_products)
+{
+	echo "Table TABLE_SHAFTS created successfully<br>";
+}
+	
 //create a table to contain inquiry data
 $install_inquiries = mysql_query("CREATE TABLE IF NOT EXISTS " . TABLE_INQUIRIES . "(
 	id int(11) NOT NULL AUTO_INCREMENT,
@@ -46,10 +67,11 @@ $install_inquiries = mysql_query("CREATE TABLE IF NOT EXISTS " . TABLE_INQUIRIES
 	category varchar(220),
 	club varchar(220),
 	shaft varchar(220),
-	quantity varchar(220),
+	quantity tinyint(22),
 	customer varchar(220),
 	email varchar(220),
 	phone varchar(220),
+	subscribe enum('yes','no'),
 	comment text(500),
 	time timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE CURRENT_TIMESTAMP,
 	PRIMARY KEY(id)
