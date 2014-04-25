@@ -17,7 +17,8 @@ $install_products = mysql_query("CREATE TABLE IF NOT EXISTS " . TABLE_PRODUCTS .
 	status varchar(220),
 	details varchar(220),
 	time timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE CURRENT_TIMESTAMP,
-	PRIMARY KEY(id)
+	PRIMARY KEY(id),
+	UNIQUE KEY(product_id)
 	) ENGINE=InnoDB DEFAULT CHARSET=utf8;") or die("Error creating table TABLE_PRODUCTS:" . mysql_error());
 
 if($install_products)
@@ -31,7 +32,7 @@ $insert_products = mysql_query("LOAD DATA INFILE 'jdm_products.csv'
 		FIELDS TERMINATED BY ','
 		OPTIONALLY ENCLOSED BY '\"' 
 		LINES TERMINATED BY '\n'
-		IGNORE 1 LINES 		(id,product_id,upc,sku,club,brand,category,price,cost,status,details,time)") or die("Error loading CSV file into MySQL table: " . mysql_error());
+		IGNORE 1 LINES (id,product_id,upc,sku,club,brand,category,price,cost,status,details,time)") or die("Error loading CSV file into MySQL table: " . mysql_error());
 		
 if($insert_products)
 {
@@ -39,7 +40,7 @@ if($insert_products)
 }
 
 //create a table to contain shaft data
-$install_products = mysql_query("CREATE TABLE IF NOT EXISTS " . TABLE_SHAFTS . "(
+$install_shafts = mysql_query("CREATE TABLE IF NOT EXISTS " . TABLE_SHAFTS . "(
 	id int(11) NOT NULL AUTO_INCREMENT,
 	product_id varchar(220),
 	upc varchar(220),
@@ -52,10 +53,11 @@ $install_products = mysql_query("CREATE TABLE IF NOT EXISTS " . TABLE_SHAFTS . "
 	status varchar(220),
 	details varchar(220),
 	time timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE CURRENT_TIMESTAMP,
-	PRIMARY KEY(id)
+	PRIMARY KEY(id),
+	UNIQUE KEY(product_id)
 	) ENGINE=InnoDB DEFAULT CHARSET=utf8;") or die("Error creating table TABLE_SHAFTS:" . mysql_error());
 
-if($install_products)
+if($install_shafts)
 {
 	echo "Table TABLE_SHAFTS created successfully<br>";
 }

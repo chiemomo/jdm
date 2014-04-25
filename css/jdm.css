@@ -3,6 +3,39 @@ body {
     font-family: Verdana,Arial,sans-serif;
 	font-size:14px;
 }
+.wrapper {
+	width:900px;
+	margin:0 auto;
+}
+.container_left {
+	width:540px;
+	float:left;
+}
+.container_right {
+	width:360px;
+	float:left;
+}
+
+/*product detail accordion*/
+#accordion {
+    width:500px;
+}
+.product_image, .product_details {
+}
+
+/*sticky quote form with scroll*/
+#form_wrapper {
+    padding:25px;
+	width:310px;
+	background-color:#eee;
+}
+.stick {
+    position:fixed;
+    top:10px;
+}
+.clear {
+    clear:both;
+}
 
 /*quote form*/
 .ui-widget {
@@ -29,9 +62,12 @@ input#subscribe {
     height: 15px;
 }
 
-/*product detail accordion*/
-#accordion {
-    width: 500px;
-}
-.product_image, .product_details {
+/**/
+element.style {
+    display: block;
+    height: auto;
+    position: absolute;
+    left: 450px;
+    top: 450px;
+    width: 400px;
 }
