@@ -1,7 +1,37 @@
-/*product details with according jquery UI*/
+body {
+    color: #333333;
+    font-family: Verdana,Arial,sans-serif;
+	font-size:14px;
+}
+
+/*quote form*/
+.ui-widget {
+    margin-bottom: 18px;
+}
+.ui-widget label{
+    font-size: 14px;
+}
+#quote_form label {
+    display: block;
+    font-size: 1.1em;
+    font-weight: bold;
+}
+#quote_form input , #quote_form textarea {
+    font-family: Verdana,Arial,sans-serif;
+	font-size:1em;
+} 
+#quote_form input {
+    height: 30px;
+    width: 300px;
+}
+input#subscribe {
+    width: 15px;
+    height: 15px;
+}
+
+/*product detail accordion*/
 #accordion {
-	width: 500px;
+    width: 500px;
 }
 .product_image, .product_details {
-
 }
