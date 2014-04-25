@@ -12,9 +12,11 @@ if($_POST and $_GET)
 		$club = mysql_real_escape_string($_POST['club']);
 		$shaft = mysql_real_escape_string($_POST['shaft']);
 		$subscribe = $_POST['subscribe'];
+		$comment = mysql_real_escape_string($_POST['comment']);
+		$quantity = preg_replace('#[^0-9]#', '', $_POST['quantity']);
 	 
 		//Build our query statement
-		$query = "INSERT INTO ".TABLE_INQUIRIES."(customer, email, club, shaft, subscribe, time) VALUES ('".$customer."', '".$email."', '".$club."', '".$shaft."', '".$subscribe."', now());";
+		$query = "INSERT INTO ".TABLE_INQUIRIES."(customer, email, club, shaft, quantity, subscribe, comment, time) VALUES ('".$customer."', '".$email."', '".$club."', '".$shaft."', '".$quantity."', '".$subscribe."', '".$comment."', now());";
 		mysql_query($query) or die(mysql_error());
 		
 		//After the $_POST data is processed, we use the exit() function because we don't need to actually show the page as the request is made in the background
@@ -95,14 +97,18 @@ $(function()
         var email = $("#email").val();     
         var club = $("#club").val();     
         var shaft = $("#shaft").val();
-        var subscribe = $("#subscribe").val();
-		
+        var quantity = $("#quantity").val();
+        var comment = $("#comment").val();
+	
+		/* what if a customer uncheck the subscription box?*/
 		if(document.getElementById("subscribe").checked){
-			document.getElementById("subscribeHidden").disabled = true;
+			var subscribe = 'yes';
+		} else {
+			var subscribe = 'no';
 		}
-		
+			
         //Check for empty values
-        if(customer == '' || email == '' || club == '' || shaft == '')
+        if(customer == '' || email == '' || club == '' || shaft == '' || quantity == '')
         {
 			//show the html error message where div.error if there is empty field
 			$('.error').fadeIn(400).show().html('Please fill required fields.'); 
@@ -110,7 +116,8 @@ $(function()
         else
         {
 			//construct the data string to insert the table	
-			var datastring = "customer=" + customer + "&email=" + email + "&club=" + club + "&shaft=" + shaft +"&subscribe=" + subscribe;
+			var datastring = "customer=" + customer + "&email=" + email + "&club=" + club + "&shaft=" + shaft + "&quantity=" + quantity 
+			+ "&subscribe=" + subscribe +"&comment=" + comment;
  
 			/* AJAX request. The request is made to $_SERVER['PHP_SELF']
 			The request is handled by checking for $_POST data (line 5)	*/
@@ -125,8 +132,17 @@ $(function()
 						$('#email').val(''); //Clear out val from text box
 						$('#club').val(''); //Clear out val from text box
 						$('#shaft').val(''); //Clear out val from text box
-						$('.success').fadeIn(2000).show().html('Thanks ' +customer + ', your request has been submitted successfully!').fadeOut(6000); //Show, then hide success msg
+						$('#quantity').val(''); //Clear out val from text box
+						$('#comment').val(''); //Clear out val from text box
+						//$('.success').fadeIn(2000).show().html('Thanks ' +customer + ', your request has been submitted successfully!').fadeOut(6000); //Show, then hide success msg
 						$('.error').fadeOut(2000).hide(); //If showing error, fade out
+						
+						var thanks = "Thank you, " + customer + " for your interest!<br>"
+						thanks += "Your quote for " + club + " with " + shaft + " shaft is on the way." 
+						
+						$(function() {
+							$( "#success" ).dialog().html(thanks);
+						});
 						
 						//every time user submit information, it load all the messages and show them
 						//$("#load_msgs").fadeIn(400).show().load('get_msg.php');
@@ -149,7 +165,9 @@ $(function()
 </script>
 </head>
 <body>
+
 <div class="container">
+
 <form method="post" name="form" id="form">
  
 <div class="ui-widget">
@@ -162,14 +180,19 @@ $(function()
 	<input id="shaft">
 </div>
 
+<p><label>Quantity : </label>
+<input type="text" id="quantity" name="quantity" /></p>
+
 <p><label>Full Name: </label>
 <input type="text" id="customer" name="customer" /></p>
 
 <p><label>Email Address: </label>
 <input type="text" id="email" name="email" /></p>
 
+<p><label>Comment: </label>
+<textarea name="text" id="comment" rows="5" cols="50"></textarea></p>
+
 <input type="checkbox" id="subscribe" name="subscribe" value="yes" checked>Subscribe Newsletter
-<input type="hidden" id="subscribeHidden" name="subscribeHidden" value="no">
 
 <p><button type="submit" class="submit" value="submit">Get A Quote!</button></p>
 
@@ -180,6 +203,8 @@ $(function()
 <span class="error" style="display:none;"></span>
 </p>
 
+<div id="success" title="Request Success!">
+</div>
 
 <div id="load_msgs" style="display:none;border-top: 1px solid #ccc;"></div>
 
