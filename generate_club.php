@@ -7,7 +7,7 @@ require 'includes/constants/dbc.php';
 function get_club(){
 
 	//pull out club data with ascending order
-	$query="SELECT club FROM " . TABLE_PRODUCTS . " ORDER BY club ASC;";
+	$query = "SELECT club FROM " . TABLE_PRODUCTS . " ORDER BY club ASC;";
 	$result = mysql_query($query) or die(mysql_error());
 	
 	//define an array to hold the string

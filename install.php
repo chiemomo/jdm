@@ -26,7 +26,7 @@ if($install_products)
 	echo "Table TABLE_PRODUCTS created successfully<br>";
 }
 
-//insert the product data from csv file.
+insert the product data from csv file.
 $insert_products = mysql_query("LOAD DATA INFILE 'jdm_products.csv'
 		INTO TABLE ".TABLE_PRODUCTS."
 		FIELDS TERMINATED BY ','

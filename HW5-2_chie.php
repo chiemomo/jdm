@@ -40,10 +40,11 @@ include 'includes/constants/dbc.php';
 	}
 	//print_r($table_rows); echo "<br><br>";
 	
-//Chrat 1: BAR CHART: Number of inquiries per club
+//CHART 1: BAR CHART: Number of inquiries per club
 
 //step 1: extract all categories
 	$club = array();
+
 	foreach ($table_rows as $current_row){
 		//if the product category of the current row is not in the list, add it
 		if ( !in_array($current_row['club'], $club) ) {
@@ -51,7 +52,6 @@ include 'includes/constants/dbc.php';
 		}
 	}
 	//print_r($club); echo "<br><br>";
-
 
 //step 2-1: compute the order counts for each club
 	$counts_per_club = array();
@@ -67,7 +67,6 @@ include 'includes/constants/dbc.php';
 		$counts_per_club[$current_row_club] ++; //increment the count for the club of the current row
 	}
 	//print_r($counts_per_club); echo "<br><br>";
-
 
 //step 3: generate the Google Image Charts string
 	$chart_url_1 = "https://chart.googleapis.com/chart?";
@@ -107,121 +106,215 @@ include 'includes/constants/dbc.php';
 	foreach ($club as $club_i){
 		$chart_url_1 .= "|" . $club_i;
 	}
+//CHART 1: END
+	
 
-
-//Chrat 2: LINE SHART: Number of inquiries and newsletter subscription per day
+//CHART 2: LINE SHART: Number of inquiries and newsletter subscription per day
 /*
-SELECT DATE(time) AS date, COUNT(id) AS inquiries, COUNT(subscribe = 'yes') AS subscribed
-FROM `inquiries_jdm_chie`
-GROUP BY date
-
-SELECT DATE(time) AS date, COUNT(subscribe = 'yes')
+SELECT DATE(time) AS date, COUNT(id) AS inquiries, COUNT(CASE WHEN subscribe = 'yes' THEN subscribe END) AS subscribed
 FROM `inquiries_jdm_chie`
 GROUP BY date
 */
-//step 1: extract all categories
-	$club = array();
-	foreach ($table_rows as $current_row){
-		//if the product category of the current row is not in the list, add it
-		if ( !in_array($current_row['club'], $club) ) {
-			$club[] = $current_row['club'];
+
+//Retrieve data (all column) from the inquiry table
+$query2 = "SELECT DATE(time) AS date, COUNT(id) AS inquiries, COUNT(CASE WHEN subscribe = 'yes' THEN subscribe END) AS subscriptions
+FROM " . TABLE_INQUIRIES . " GROUP BY date;";
+
+	//execute it
+	$result2 = mysql_query($query2) or die("Failed to retrieve rows: " . mysql_error());
+
+	//array to store the rows
+	$table_rows2 = array();
+
+	while($row2 = mysql_fetch_array($result2))
+	{
+		$table_rows2[] = $row2; //add the next row to the list of rows stored in $table_rows
+	}
+	//print_r($table_rows2); echo "<br><br>";
+
+//step 1: extract all values
+	$date = array();
+	$inquries = array();
+	$subscriptions = array();
+
+	foreach ($table_rows2 as $current_row){
+		if ( !in_array($current_row['date'], $date) ) {
+			$date[] = $current_row['date'];
+		}
+		if ( !in_array($current_row['inquiries'], $date) ) {
+			$inquries[] = $current_row['inquiries'];
+		}
+		if ( !in_array($current_row['subscriptions'], $date) ) {
+			$subscriptions[] = $current_row['subscriptions'];
 		}
 	}
-	//print_r($club); echo "<br><br>";
 
+/*	print_r($date); echo "<br><br>";
+	print_r($inquries); echo "<br><br>";
+	print_r($subscriptions); echo "<br><br>";
+*/
 
-//step 2-1: compute the order counts for each club
-	$counts_per_club = array();
-	foreach ($club as $cat_i){
-		$counts_per_club[$cat_i] = 0; //start with zero
-	}
-
-	foreach ($table_rows as $current_row){
-		//find the category of the current row
-		$current_row_club = $current_row['club'];
-		//echo "Incrementing club " . $current_row_club . "<br>";
-			
-		$counts_per_club[$current_row_club] ++; //increment the count for the club of the current row
-	}
-	//print_r($counts_per_club); echo "<br><br>";
-
+//step 2: no computing is needed since it's counted in the SQL query
 
 //step 3: generate the Google Image Charts string
-	$labels = $club;
-	$data = $counts_per_club;
+//https://chart.googleapis.com/chart?chtt=Inquiries%20and%20Subscribe%20Per%20Day&chs=700x300&cht=lc&chds=0,10&chm=N,00FF00,0,-1,14|N,0000FF,1,-1,14&chco=00FF00,0000FF&chdl=Inquiries|Subscriptions&chxt=x,y&chxl=0:|2014-04-20|2014-04-21|2014-04-22|2014-04-23|2014-04-24|2014-04-25|2014-04-27|1:|0|5|10&chd=t:1,1,1,2,6,10,1|1,1,1,2,5,6,0
 
-	$chart_url = "https://chart.googleapis.com/chart?";
+	$chart_url_2 = "https://chart.googleapis.com/chart?";
 
-	$chart_title = "Inquiries Per Club";
-	$x = 500;
-	$y = 400;
-	$chart_type = "bhs";
+	$chart_title = "Inquiries and Subscribe Per Day";
+	$x = 700;
+	$y = 300;
+	$chart_type = "lc";
 	$scale = "0,10";
-	$count_label = "N,333333,0,-1,14";
-	//$colors = array('C6D9FD','3493EC','0000FF','02335E');
+	$count_label = "N,00FF00,0,-1,14|N,0000FF,1,-1,14";
+	$colors = "00FF00,0000FF";
+	$legend = "Subscriptions|Inquiries";
 
-	$chart_url .= "chtt=" . $chart_title; //add chart title
-	$chart_url .= "&chs=" . $x . "x" . $y; //add width($x) and hight($y) of the chart image
-	$chart_url .= "&cht=" . $chart_type; //add chart type
-	$chart_url .= "&chds=" . $scale; //add scale
-	$chart_url .= "&chm=" . $count_label; //show count numbers on each bar
-	//define colors of the chart
-	//$chart_url .= "&chco=";
-	/*
-	for ($i = 0; $i < count($colors); $i++) {
-
-		$chart_url .= $colors[$i];
-		
-		if ($i < count($colors) - 1) {
-			$chart_url .= ",";
-		}
-	}
-	*/	
-	//count inquiries for each club
-	$chart_url .= "&chd=t:";
-	for ($i = 0; $i < count($club); $i++){
-		
-		//get the club at index $i
-		$club_i = $club[$i];
-		
-		//add the data to the URL
-		$chart_url .= $counts_per_club[$club_i];
-		
-		if ($i < count($club) - 1){
-			$chart_url .= ",";
-		}
-	}
+	$chart_url_2 .= "chtt=" . $chart_title; //add chart title
+	$chart_url_2 .= "&chs=" . $x . "x" . $y; //add width($x) and hight($y) of the chart image
+	$chart_url_2 .= "&cht=" . $chart_type; //add chart type
+	$chart_url_2 .= "&chds=" . $scale; //add scale
+	$chart_url_2 .= "&chm=" . $count_label; //show count numbers on each bar
+	$chart_url_2 .= "&chco=" . $colors; //add colors of the lines
+	$chart_url_2 .= "&chdl=" . $legend; //generate string for chart legend
 
 	//labels for x & y axis
-	$chart_url.="&chxt=y&chxl=0:";
-	foreach ($club as $club_i){
-		$chart_url .= "|" . $club_i;
+	$chart_url_2 .= "&chxt=x,y&chxl=0:";
+	foreach ($date as $date_i){
+		$chart_url_2 .= "|" . $date_i;
+	}
+	$chart_url_2 .= "|1:|0|5|10";
+
+	//add number of subscriptions per day
+	$chart_url_2 .= "&chd=t:";
+	for ($i = 0; $i < count($subscriptions); $i++){
+		$chart_url_2 .= $subscriptions[$i];		
+		if ($i < count($subscriptions) - 1){
+			$chart_url_2 .= ",";
+		}
 	}
 
-	/*generate string for chart legend
-	$chart_url .= "&chdl=";
-	for ($i = 0; $i < count($labels); $i++){
-		$chart_url .= $labels[$i];
-		
-		if ($i < count($club) - 1){
-			$chart_url .= "|";
+	//add number of inquiries per day
+	$chart_url_2 .= "|";
+	for ($i = 0; $i < count($inquries); $i++){
+		$chart_url_2 .= $inquries[$i];	
+		if ($i < count($inquries) - 1){
+			$chart_url_2 .= ",";
 		}
-	}*/
+	}
+//CAHRT 2: END
 
-	?>
+
+//CHART 3: LINE SHART: Number of inquiries and newsletter subscription per day
+/*
+SELECT DATE(time) AS date, COUNT(id) AS inquiries, COUNT(CASE WHEN subscribe = 'yes' THEN subscribe END) AS subscribed
+FROM `inquiries_jdm_chie`
+GROUP BY date
+*/
+define ("USERS", "hw4_user_table");
+define ("USER_BLOG", "hw4_user_blog");
+
+$s = mysql_query("SELECT ".USERS.".id, ".USERS.".user_name, ".USER_BLOG.".blog_id, ".USER_BLOG.".blog_title, ".USER_BLOG.".blog_entry, ".USER_BLOG.".image, ".USER_BLOG.".time_submitted FROM ".USERS." INNER JOIN ".USER_BLOG." ON ".USERS.".id=".USER_BLOG.".id ORDER BY time_submitted ASC;") or die(mysql_error());
+
+SELECT Orders.OrderID, Customers.CustomerName, Orders.OrderDate
+FROM Orders
+INNER JOIN Customers
+ON Orders.CustomerID=Customers.CustomerID;
+
+SELECT TABLE_INQUIRIES.club, TABLE_INQUIRIES.shaft, TABLE_INQUIRIES,quantity
+
+//Retrieve data (all column) from the inquiry table
+	$query3 = "SELECT * FROM " . TABLE_PRODUCTS . " ORDER BY club DESC;";
+	$result3 = mysql_query($query3) or die("Failed to retrieve rows: " . mysql_error());
+
+	$table_rows3 = array();
+
+	while($row3 = mysql_fetch_array($result3))
+	{
+		$table_rows3[] = $row3;
+	}
+	print_r($table_rows3); echo "<br><br>";
+
+//step 1: extract all values
+	$price = array();
+
+	foreach ($table_rows3 as $current_row){
+		if ( !in_array($current_row['price'], $date) ) {
+			$price[] = $current_row['price'];
+		}
+	}
+
+/*	print_r($date); echo "<br><br>";
+	print_r($inquries); echo "<br><br>";
+	print_r($subscriptions); echo "<br><br>";
+*/
+
+//step 2: no computing is needed since it's counted in the SQL query
+
+//step 3: generate the Google Image Charts string
+//https://chart.googleapis.com/chart?chtt=Inquiries%20and%20Subscribe%20Per%20Day&chs=700x300&cht=lc&chds=0,10&chm=N,00FF00,0,-1,14|N,0000FF,1,-1,14&chco=00FF00,0000FF&chdl=Inquiries|Subscriptions&chxt=x,y&chxl=0:|2014-04-20|2014-04-21|2014-04-22|2014-04-23|2014-04-24|2014-04-25|2014-04-27|1:|0|5|10&chd=t:1,1,1,2,6,10,1|1,1,1,2,5,6,0
+
+	$chart_url_2 = "https://chart.googleapis.com/chart?";
+
+	$chart_title = "Inquiries and Subscribe Per Day";
+	$x = 700;
+	$y = 300;
+	$chart_type = "lc";
+	$scale = "0,10";
+	$count_label = "N,00FF00,0,-1,14|N,0000FF,1,-1,14";
+	$colors = "00FF00,0000FF";
+	$legend = "Subscriptions|Inquiries";
+
+	$chart_url_2 .= "chtt=" . $chart_title; //add chart title
+	$chart_url_2 .= "&chs=" . $x . "x" . $y; //add width($x) and hight($y) of the chart image
+	$chart_url_2 .= "&cht=" . $chart_type; //add chart type
+	$chart_url_2 .= "&chds=" . $scale; //add scale
+	$chart_url_2 .= "&chm=" . $count_label; //show count numbers on each bar
+	$chart_url_2 .= "&chco=" . $colors; //add colors of the lines
+	$chart_url_2 .= "&chdl=" . $legend; //generate string for chart legend
+
+	//labels for x & y axis
+	$chart_url_2 .= "&chxt=x,y&chxl=0:";
+	foreach ($date as $date_i){
+		$chart_url_2 .= "|" . $date_i;
+	}
+	$chart_url_2 .= "|1:|0|5|10";
+
+	//add number of subscriptions per day
+	$chart_url_2 .= "&chd=t:";
+	for ($i = 0; $i < count($subscriptions); $i++){
+		$chart_url_2 .= $subscriptions[$i];		
+		if ($i < count($subscriptions) - 1){
+			$chart_url_2 .= ",";
+		}
+	}
+
+	//add number of inquiries per day
+	$chart_url_2 .= "|";
+	for ($i = 0; $i < count($inquries); $i++){
+		$chart_url_2 .= $inquries[$i];	
+		if ($i < count($inquries) - 1){
+			$chart_url_2 .= ",";
+		}
+	}
+//CAHRT 3: END
+
+?>
 
 <html>
 
+	<p>Please put jdm_inquiries.csv in the HW_5-2_chie folder into C:\wamp\bin\mysql\mysql5.6.12\data\hci573 in order to populate tables.</p>
+
 	<!-- Chart 1 -->
-	<p><?php echo $chart_url_1;?></p>
+	<h2>This bar chart shows how many inquires each club has got.</h2>
     <img src="<?php echo $chart_url_1;?>"></img>
+	<p>Chart URL: <?php echo $chart_url_1;?></p>
+	
+	<br><br>
 	
 	<!-- Chart 2 -->
-	<p><?php echo $chart_url_2;?> </p>
+	<h2>This line chart to show number of inquiries and email letter subscriptions</h2>
     <img src="<?php echo $chart_url_2;?>"></img>
-
-	<!-- Chart 3 -->
-	<p><?php echo $chart_url_3?> </p>
-    <img src="<?php echo $chart_url_3;?>"></img>
+	<p>Chart URL: <?php echo $chart_url_2;?> </p>
 
 </html>
