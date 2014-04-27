@@ -61,7 +61,20 @@ if($install_shafts)
 {
 	echo "Table TABLE_SHAFTS created successfully<br>";
 }
-	
+
+//insert the product data from csv file.
+$insert_shafts = mysql_query("LOAD DATA INFILE 'jdm_shafts.csv'
+		INTO TABLE ".TABLE_SHAFTS."
+		FIELDS TERMINATED BY ','
+		OPTIONALLY ENCLOSED BY '\"' 
+		LINES TERMINATED BY '\n'
+		IGNORE 1 LINES (id,product_id,upc,sku,shaft,brand,category,price,cost,status,details,time)") or die("Error loading CSV file into MySQL table: " . mysql_error());
+		
+if($insert_shafts)
+{
+	echo "Table TABLE_SHAFTS populated successfully<br>";
+}
+
 //create a table to contain inquiry data
 $install_inquiries = mysql_query("CREATE TABLE IF NOT EXISTS " . TABLE_INQUIRIES . "(
 	id int(11) NOT NULL AUTO_INCREMENT,
@@ -83,8 +96,6 @@ if($install_inquiries)
 {
 	echo "Table TABLE_INQUIRIES created successfully<br>";
 }
-		
-
 		
 //create a table to contain inquiry data
 $install_users = mysql_query("CREATE TABLE IF NOT EXISTS " . TABLE_USERS . "(

@@ -161,13 +161,13 @@ function load_product_details()
 				}
 					
 				//Check for empty values
-				if(customer == '' || email == '' || club == '' || shaft == '' || quantity == '')
+				/*if(customer == '' || email == '' || club == '' || shaft == '' || quantity == '')
 				{
 					//show the html error message where div.error if there is empty field
 					$('.error').fadeIn(400).show().html('<p class="red">*Please fill out all required fields.</p>'); 
 				}
 				else
-				{
+				*/{
 					//construct the data string to insert the table	
 					var datastring = "customer=" + customer + "&email=" + email + "&club=" + club + "&shaft=" + shaft + "&quantity=" + quantity 
 					+ "&subscribe=" + subscribe +"&comment=" + comment;
@@ -191,10 +191,11 @@ function load_product_details()
 								$('.error').fadeOut(2000).hide(); //If showing error, fade out
 								
 								var thanks = "<p>Thanks " + customer + " for your interest!</p>"
-								thanks += "<p>Your quote for " + club + " with " + shaft + " shaft is on its way.</p>" 
+								thanks += "<p>Your quote for " + club + " with " + shaft + " is on its way.</p>" 
 								
 								$(function() {
 									$( "#success" ).dialog({ position: { my: "center", at: "center", of: "#form_wrapper" } });
+									$( "#success" ).dialog({ width: 360, height: 200 });
 									$( "#success" ).dialog().html(thanks);
 								});
 								
