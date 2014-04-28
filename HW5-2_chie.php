@@ -207,33 +207,45 @@ FROM " . TABLE_INQUIRIES . " GROUP BY date;";
 
 //CHART 3: LINE SHART: Number of inquiries and newsletter subscription per day
 /*
-SELECT DATE(time) AS date, COUNT(id) AS inquiries, COUNT(CASE WHEN subscribe = 'yes' THEN subscribe END) AS subscribed
-FROM `inquiries_jdm_chie`
-GROUP BY date
+SELECT TABLE_INQUIRIES.id, TABLE_INQUIRIES.club, TABLE_PRODUCTS.price, TABLE_INQUIRIES.quantity
+FROM TABLE_INQUIRIES
+LEFT JOIN TABLE_PRODUCTS
+ON TABLE_INQUIRIES.club=TABLE_PRODUCTS.club
+ORDER BY TABLE_INQUIRIES.id;
+
+SELECT inquiries_jdm_chie.id, inquiries_jdm_chie.club, products_jdm_chie.price, inquiries_jdm_chie.quantity
+FROM inquiries_jdm_chie
+LEFT JOIN products_jdm_chie
+ON inquiries_jdm_chie.club=products_jdm_chie.club
+ORDER BY inquiries_jdm_chie.id;
+
+SELECT inquiries_jdm_chie.id, inquiries_jdm_chie.shaft, shafts_jdm_chie.price, inquiries_jdm_chie.quantity
+FROM inquiries_jdm_chie
+LEFT JOIN shafts_jdm_chie
+ON inquiries_jdm_chie.shaft=products_jdm_chie.shaft
+ORDER BY inquiries_jdm_chie.id;
 */
-define ("USERS", "hw4_user_table");
-define ("USER_BLOG", "hw4_user_blog");
-
-$s = mysql_query("SELECT ".USERS.".id, ".USERS.".user_name, ".USER_BLOG.".blog_id, ".USER_BLOG.".blog_title, ".USER_BLOG.".blog_entry, ".USER_BLOG.".image, ".USER_BLOG.".time_submitted FROM ".USERS." INNER JOIN ".USER_BLOG." ON ".USERS.".id=".USER_BLOG.".id ORDER BY time_submitted ASC;") or die(mysql_error());
-
-SELECT Orders.OrderID, Customers.CustomerName, Orders.OrderDate
-FROM Orders
-INNER JOIN Customers
-ON Orders.CustomerID=Customers.CustomerID;
-
-SELECT TABLE_INQUIRIES.club, TABLE_INQUIRIES.shaft, TABLE_INQUIRIES,quantity
-
-//Retrieve data (all column) from the inquiry table
-	$query3 = "SELECT * FROM " . TABLE_PRODUCTS . " ORDER BY club DESC;";
+//Retrieve id, club and quantity from the inquiry table, price from the product table and join 
+	$query3 = "SELECT " . TABLE_INQUIRIES . ".id, " . TABLE_INQUIRIES . ".club, " . TABLE_PRODUCTS . ".price, " . TABLE_INQUIRIES . ".quantity FROM " . TABLE_INQUIRIES . " LEFT JOIN " . TABLE_PRODUCTS . " ON " . TABLE_INQUIRIES . ".club=" . TABLE_PRODUCTS . ".club ORDER BY " . TABLE_INQUIRIES .".id;";
 	$result3 = mysql_query($query3) or die("Failed to retrieve rows: " . mysql_error());
 
 	$table_rows3 = array();
-
 	while($row3 = mysql_fetch_array($result3))
 	{
 		$table_rows3[] = $row3;
 	}
-	print_r($table_rows3); echo "<br><br>";
+	//print_r($table_rows3); echo "<br><br>";
+
+//Retrieve id, shaft and quantity from the inquiry table, price from the shaft table and join 	
+	$query4 = "SELECT " . TABLE_INQUIRIES . ".id, " . TABLE_INQUIRIES . ".shaft, " . TABLE_SHAFTS . ".price, " . TABLE_INQUIRIES . ".quantity FROM " . TABLE_INQUIRIES . " LEFT JOIN " . TABLE_SHAFTS . " ON " . TABLE_INQUIRIES . ".shaft=" . TABLE_SHAFTS . ".shaft ORDER BY " . TABLE_INQUIRIES .".id;";
+	$result4 = mysql_query($query4) or die("Failed to retrieve rows: " . mysql_error());
+	
+	$table_rows4 = array();
+	while($row4 = mysql_fetch_array($result4))
+	{
+		$table_rows4[] = $row4;
+	}
+	//print_r($table_rows4); echo "<br><br>";
 
 //step 1: extract all values
 	$price = array();
@@ -244,10 +256,7 @@ SELECT TABLE_INQUIRIES.club, TABLE_INQUIRIES.shaft, TABLE_INQUIRIES,quantity
 		}
 	}
 
-/*	print_r($date); echo "<br><br>";
-	print_r($inquries); echo "<br><br>";
-	print_r($subscriptions); echo "<br><br>";
-*/
+	print_r($price); echo "<br><br>";
 
 //step 2: no computing is needed since it's counted in the SQL query
 
