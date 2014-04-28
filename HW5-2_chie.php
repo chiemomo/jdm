@@ -132,21 +132,15 @@ FROM " . TABLE_INQUIRIES . " GROUP BY date;";
 	}
 	//print_r($table_rows2); echo "<br><br>";
 
-//step 1: extract all values
+//step 1: extract all values and put them in arrays
 	$date = array();
 	$inquries = array();
 	$subscriptions = array();
 
 	foreach ($table_rows2 as $current_row){
-		if ( !in_array($current_row['date'], $date) ) {
 			$date[] = $current_row['date'];
-		}
-		if ( !in_array($current_row['inquiries'], $date) ) {
-			$inquries[] = $current_row['inquiries'];
-		}
-		if ( !in_array($current_row['subscriptions'], $date) ) {
+			$inquries[] = $current_row['inquiries'];	
 			$subscriptions[] = $current_row['subscriptions'];
-		}
 	}
 
 /*	print_r($date); echo "<br><br>";
@@ -226,7 +220,7 @@ ON inquiries_jdm_chie.shaft=products_jdm_chie.shaft
 ORDER BY inquiries_jdm_chie.id;
 */
 //Retrieve id, club and quantity from the inquiry table, price from the product table and join 
-	$query3 = "SELECT " . TABLE_INQUIRIES . ".id, " . TABLE_INQUIRIES . ".club, " . TABLE_PRODUCTS . ".price, " . TABLE_INQUIRIES . ".quantity FROM " . TABLE_INQUIRIES . " LEFT JOIN " . TABLE_PRODUCTS . " ON " . TABLE_INQUIRIES . ".club=" . TABLE_PRODUCTS . ".club ORDER BY " . TABLE_INQUIRIES .".id;";
+	$query3 = "SELECT " . TABLE_INQUIRIES . ".id, " . TABLE_INQUIRIES . ".club, " . TABLE_PRODUCTS . ".price AS price_club, " . TABLE_INQUIRIES . ".quantity FROM " . TABLE_INQUIRIES . " LEFT JOIN " . TABLE_PRODUCTS . " ON " . TABLE_INQUIRIES . ".club=" . TABLE_PRODUCTS . ".club ORDER BY " . TABLE_INQUIRIES .".id DESC;";
 	$result3 = mysql_query($query3) or die("Failed to retrieve rows: " . mysql_error());
 
 	$table_rows3 = array();
@@ -237,7 +231,7 @@ ORDER BY inquiries_jdm_chie.id;
 	//print_r($table_rows3); echo "<br><br>";
 
 //Retrieve id, shaft and quantity from the inquiry table, price from the shaft table and join 	
-	$query4 = "SELECT " . TABLE_INQUIRIES . ".id, " . TABLE_INQUIRIES . ".shaft, " . TABLE_SHAFTS . ".price, " . TABLE_INQUIRIES . ".quantity FROM " . TABLE_INQUIRIES . " LEFT JOIN " . TABLE_SHAFTS . " ON " . TABLE_INQUIRIES . ".shaft=" . TABLE_SHAFTS . ".shaft ORDER BY " . TABLE_INQUIRIES .".id;";
+	$query4 = "SELECT " . TABLE_INQUIRIES . ".id, " . TABLE_INQUIRIES . ".shaft, " . TABLE_SHAFTS . ".price AS price_shaft, " . TABLE_INQUIRIES . ".quantity FROM " . TABLE_INQUIRIES . " LEFT JOIN " . TABLE_SHAFTS . " ON " . TABLE_INQUIRIES . ".shaft=" . TABLE_SHAFTS . ".shaft ORDER BY " . TABLE_INQUIRIES .".id DESC;";
 	$result4 = mysql_query($query4) or die("Failed to retrieve rows: " . mysql_error());
 	
 	$table_rows4 = array();
@@ -247,65 +241,85 @@ ORDER BY inquiries_jdm_chie.id;
 	}
 	//print_r($table_rows4); echo "<br><br>";
 
-//step 1: extract all values
-	$price = array();
-
-	foreach ($table_rows3 as $current_row){
-		if ( !in_array($current_row['price'], $date) ) {
-			$price[] = $current_row['price'];
+//combine above two arrays into one where id is matched
+	$combined_array = array();
+	foreach($table_rows3 as $key => $value){
+		foreach($table_rows4 as $value2){
+			if($value['id'] === $value2['id']){
+				$combined_array[$key] = array_merge($table_rows3[$key], $table_rows4[$key]);
+			}               
 		}
 	}
+	//print_r($combined_array); echo "<br>";
 
-	print_r($price); echo "<br><br>";
+//step 1: extract all values
+	$id = array();
+	$price_club = array();
+	$price_shaft = array();
+	$price_total = array();
 
-//step 2: no computing is needed since it's counted in the SQL query
-
+	foreach ($combined_array as $current_row){
+		$id[] = $current_row['id'];
+		$price_club[] = $current_row['price_club'] * $current_row['quantity'];
+		$price_shaft[] = $current_row['price_shaft'] * $current_row['quantity'];
+		$price_total[] = ($current_row['price_club'] + $current_row['price_shaft']) * $current_row['quantity']; //compute compute total price with price x quantity
+	}
+	
+//step 2: compute
+	
 //step 3: generate the Google Image Charts string
-//https://chart.googleapis.com/chart?chtt=Inquiries%20and%20Subscribe%20Per%20Day&chs=700x300&cht=lc&chds=0,10&chm=N,00FF00,0,-1,14|N,0000FF,1,-1,14&chco=00FF00,0000FF&chdl=Inquiries|Subscriptions&chxt=x,y&chxl=0:|2014-04-20|2014-04-21|2014-04-22|2014-04-23|2014-04-24|2014-04-25|2014-04-27|1:|0|5|10&chd=t:1,1,1,2,6,10,1|1,1,1,2,5,6,0
 
-	$chart_url_2 = "https://chart.googleapis.com/chart?";
+	$chart_url_3 = "https://chart.googleapis.com/chart?";
 
-	$chart_title = "Inquiries and Subscribe Per Day";
+	$chart_title = "Quote";
 	$x = 700;
-	$y = 300;
-	$chart_type = "lc";
-	$scale = "0,10";
-	$count_label = "N,00FF00,0,-1,14|N,0000FF,1,-1,14";
-	$colors = "00FF00,0000FF";
-	$legend = "Subscriptions|Inquiries";
+	$y = 400;
+	$chart_type = "bvs";
+	$scale = "0,5000";
+	$count_label = "N,FF0000,-1,,12|N,333333,0,,12,,c|N,333333,1,,12,,c";
+	$colors = "00A5C6,FFFF42";
+	$legend = "Club|Shaft";
 
-	$chart_url_2 .= "chtt=" . $chart_title; //add chart title
-	$chart_url_2 .= "&chs=" . $x . "x" . $y; //add width($x) and hight($y) of the chart image
-	$chart_url_2 .= "&cht=" . $chart_type; //add chart type
-	$chart_url_2 .= "&chds=" . $scale; //add scale
-	$chart_url_2 .= "&chm=" . $count_label; //show count numbers on each bar
-	$chart_url_2 .= "&chco=" . $colors; //add colors of the lines
-	$chart_url_2 .= "&chdl=" . $legend; //generate string for chart legend
+	$chart_url_3 .= "chtt=" . $chart_title; //add chart title
+	$chart_url_3 .= "&chs=" . $x . "x" . $y; //add width($x) and hight($y) of the chart image
+	$chart_url_3 .= "&cht=" . $chart_type; //add chart type
+	$chart_url_3 .= "&chds=" . $scale; //add scale
+	$chart_url_3 .= "&chm=" . $count_label; //show count numbers on each bar
+	$chart_url_3 .= "&chco=" . $colors; //add colors of the lines
+	$chart_url_3 .= "&chdl=" . $legend; //generate string for chart legend
 
 	//labels for x & y axis
-	$chart_url_2 .= "&chxt=x,y&chxl=0:";
-	foreach ($date as $date_i){
-		$chart_url_2 .= "|" . $date_i;
+	$chart_url_3 .= "&chxt=x,y&chxl=0:";
+	for ($i = 0; $i < 20; $i++){
+		$chart_url_3 .= "|" . $id[$i];
 	}
-	$chart_url_2 .= "|1:|0|5|10";
+	$chart_url_3 .= "|1:|0|500|1000|1500|2000|2500|3000";
 
-	//add number of subscriptions per day
-	$chart_url_2 .= "&chd=t:";
-	for ($i = 0; $i < count($subscriptions); $i++){
-		$chart_url_2 .= $subscriptions[$i];		
-		if ($i < count($subscriptions) - 1){
-			$chart_url_2 .= ",";
+	//add total price for each inquiry
+/*	$chart_url_3 .= "&chd=t:";
+	for ($i = 0; $i < count($price_total); $i++){
+		$chart_url_3 .= $price_total[$i];		
+		if ($i < count($price_total) - 1){
+			$chart_url_3 .= ",";
+		}
+	}
+*/
+	$chart_url_3 .= "&chd=t:";
+	for ($i = 0; $i < 20; $i++){
+		$chart_url_3 .= $price_club[$i];		
+		if ($i < 19){
+			$chart_url_3 .= ",";
 		}
 	}
 
-	//add number of inquiries per day
-	$chart_url_2 .= "|";
-	for ($i = 0; $i < count($inquries); $i++){
-		$chart_url_2 .= $inquries[$i];	
-		if ($i < count($inquries) - 1){
-			$chart_url_2 .= ",";
+	$chart_url_3 .= "|";
+	for ($i = 0; $i < 20; $i++){
+		$chart_url_3 .= $price_shaft[$i];		
+		if ($i < 19){
+			$chart_url_3 .= ",";
 		}
 	}
+
 //CAHRT 3: END
 
 ?>
@@ -322,8 +336,15 @@ ORDER BY inquiries_jdm_chie.id;
 	<br><br>
 	
 	<!-- Chart 2 -->
-	<h2>This line chart to show number of inquiries and email letter subscriptions</h2>
+	<h2>This line chart shows number of inquiries and email letter subscriptions</h2>
     <img src="<?php echo $chart_url_2;?>"></img>
 	<p>Chart URL: <?php echo $chart_url_2;?> </p>
+
+	<br><br>
+	
+	<!-- Chart 3 -->
+	<h2>This bar chart shows total value (club + shaft) of the most recent 20 quotes</h2>
+    <img src="<?php echo $chart_url_3;?>"></img>
+	<p>Chart URL: <?php echo $chart_url_3;?> </p>
 
 </html>
