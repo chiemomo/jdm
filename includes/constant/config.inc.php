@@ -15,6 +15,8 @@ define ("TABLE_PRODUCTS", "products_jdm_chie");
 define ("TABLE_SHAFTS", "shafts_jdm_chie");
 define ("TABLE_INQUIRIES", "inquiries_jdm_chie");
 define ("USERS", "users_jdm_chie");
+define ("USER_DETAILS", "user_details_jdm_chie");
+define ("USER_BLOG", "user_blog_jdm_chie");
 
 //connect to the SQL database
 $link = mysql_connect(DB_HOST, DB_USER, DB_PASS) or die("Couldn't make connection.");

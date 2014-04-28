@@ -1,34 +1,30 @@
 <?php
-//JDM
 
 ini_set('display_errors', 'On');
 error_reporting(E_ALL | E_STRICT);
 
-//SQL credentials
-define ("DB_HOST", "localhost");
-define ("DB_USER", "hci573");
-define ("DB_PASS", "hci573");
-define ("DB_NAME", "hci573");
+define ("DB_HOST", "localhost"); // set database host
+define ("DB_USER", "hci573"); // set database user
+define ("DB_PASS","hci573"); // set database password
+define ("DB_NAME","hci573"); // set database name
 
 //tables
-define ("TABLE_PRODUCTS", "products_jdm_chie");
-define ("TABLE_SHAFTS", "shafts_jdm_chie");
-define ("TABLE_INQUIRIES", "inquiries_jdm_chie");
-define ("USERS", "users_jdm_chie");
-
-//connect to the SQL database
-$link = mysql_connect(DB_HOST, DB_USER, DB_PASS) or die("Couldn't make connection.");
-$db = mysql_select_db(DB_NAME, $link) or die("Couldn't select database");
+define ("USERS", "hw4_user_table_chie");
+define ("USER_DETAILS", "hw4_user_details_chie");
+define ("USER_BLOG", "hw4_user_blog_chie");
 
 //site base
-define ("SITE_BASE", "http://".$_SERVER['HTTP_HOST']."/jdm");
-define ("SITE_ROOT", $_SERVER['DOCUMENT_ROOT']."/jdm");
+define ("SITE_BASE", "http://".$_SERVER['HTTP_HOST']."/HW4_user_system_chie");
+define ("SITE_ROOT", $_SERVER['DOCUMENT_ROOT']."/HW4_user_system_chie");
 
 //email to use for verification
 define ("GLOBAL_EMAIL", "notused@gmail.com");
 define ("REQUIRE_ACTIVIATION",false); //keep this as false
 
-//keys (ideally, those would be stored on a separate machine or server)
+$link = mysql_connect(DB_HOST, DB_USER, DB_PASS) or die("Couldn't make connection.");
+$db = mysql_select_db(DB_NAME, $link) or die("Couldn't select database");
+
+//our keys -- ideally, those would be stored on a separate machine or server
 $salt = "ae4bca65f3283fe26a6d3b10b85c3a308";
 global $salt;
 
@@ -38,13 +34,9 @@ global $passsalt;
 $password_store_key = sha1("dsf4dgfd5s2");
 global $password_store_key;
 
-/********************/
-/**** FUNCTIONS *****/
-/********************/
 
-/**** USER SYSTEM *****/
 
-/*Function to add a new user to the system */
+/* Function that adds a new user to our system */
 function add_user($fullname, $username, $password, $email, $date, $user_ip, $activation_code){
 	
 	//declaring $salt and $link as global allows the function to access the values stored in these variables
@@ -231,7 +223,7 @@ function logout($lm = NULL)
 	}
 }
 
-/*Function to checks if the person logged in has admin rights using the session data*/
+/* using the session data, this function checks if the person logged in has admin rights */
 function is_admin()
 {
 	if(isset($_SESSION['user_level']) && $_SESSION['user_level'] >= 5)
@@ -263,7 +255,7 @@ function generate_key($length = 7)
 	return $password;
 }
 
-/*Function to super sanitize anything going near the DBs*/
+/*Function to super sanitize anything going near our DBs*/
 function filter($data)
 {
 	$data = trim(htmlentities(strip_tags($data)));
@@ -277,7 +269,7 @@ function filter($data)
 	return $data;
 }
 
-/*Function to easily output all of the css, js, etc...*/
+/*Function to easily output all our css, js, etc...*/
 function return_meta($title = NULL, $keywords = NULL, $description = NULL)
 {
 	if(is_null($title))
@@ -286,23 +278,24 @@ function return_meta($title = NULL, $keywords = NULL, $description = NULL)
 	}
 
 	$meta = '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-			<html xmlns="http://www.w3.org/1999/xhtml">
-			<head>
-				<title>'.$title.'</title>
-				<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-				<meta name="keywords" content="'.$keywords.'" />
-				<meta name="description" content="'.$description.'" />
-				<meta name="language" content="en-us" />
-				<meta name="robots" content="index,follow" />
-				<meta name="googlebot" content="index,follow" />
-				<meta name="msnbot" content="index,follow" />
-				<meta name="revisit-after" content="7 Days" />
-				<meta name="url" content="'.SITE_BASE.'" />
-				<meta name="copyright" content="Copyright '.date("Y").' Your site name here. All rights reserved." />
-				<meta name="author" content="Your site name here" />
-				<link rel="shortcut icon" type="image/x-icon" href="images/favicon.ico" />
-				<link rel="stylesheet" type="text/css" media="all" href="'.SITE_BASE.'/includes/styles/styles.css" />
-			';
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>'.$title.'</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="keywords" content="'.$keywords.'" />
+	<meta name="description" content="'.$description.'" />
+	<meta name="language" content="en-us" />
+	<meta name="robots" content="index,follow" />
+	<meta name="googlebot" content="index,follow" />
+	<meta name="msnbot" content="index,follow" />
+	<meta name="revisit-after" content="7 Days" />
+	<meta name="url" content="'.SITE_BASE.'" />
+	<meta name="copyright" content="Copyright '.date("Y").' Your site name here. All rights reserved." />
+	<meta name="author" content="Your site name here" />
+	<link rel="shortcut icon" type="image/x-icon" href="images/favicon.ico" />
+	<link rel="stylesheet" type="text/css" media="all" href="'.SITE_BASE.'/includes/styles/styles.css" />
+	
+	';
 
 	echo $meta;
 }
@@ -312,6 +305,7 @@ function check_email($email)
 {
 	return preg_match('/^\S+@[\w\d.-]{2,}\.[\w]{2,6}$/iU', $email) ? TRUE : FALSE;
 }
+
 
 /*Function to update user details*/
 function hash_pass($pass)
@@ -323,12 +317,15 @@ function hash_pass($pass)
 	return $hashed;
 }
 
-/*Function to store images in a DB*/
+
+//Store images in a DB
 $file_location = "images";
 global $file_location;
 
+
 function store_image($tmp_filename){
 	global $link;
+	
 	
 	// Read the file
 	$fp = fopen($tmp_filename, 'r'); //creates a handle to the file, open $tmp_filename for 'r' = reading
@@ -336,13 +333,16 @@ function store_image($tmp_filename){
 	$data = addslashes($data); //prepare the data to be stored in an SQL table
 	fclose($fp); //close the file handle, to save memory
 
+
 	// Create the query and insert
 	// into our database.
 	$query = "INSERT INTO " . USER_BLOG . " (image) VALUES ('$data');";
 	$result = mysql_query($query, $link) or die (mysql_error());
+
+
 }
 
-/*Function to returns all images in the path*/
+/* returns all images in the path */
 function get_images($path){
 
 	//initialize an empty array to hold the result
@@ -350,6 +350,8 @@ function get_images($path){
 
 	//open the directory
 	$handle = opendir($path);
+
+	
 	
 	while (true){
 		$current_file = readdir($handle); //get the name of the next file in the directory
@@ -377,8 +379,6 @@ function get_images($path){
 		else
 			break;
 	}
-
+	
 	return $results;
 }
-
-?>

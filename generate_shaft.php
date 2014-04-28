@@ -1,5 +1,5 @@
 <?php
-require 'includes/constants/dbc.php';
+require 'includes/constant/config.inc.php';
 
 //PREPARE A SHAFT LIST IN JSON FORMAT fOR JQUERY UI AUTO-COMPLETION
 
