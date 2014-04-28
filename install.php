@@ -21,23 +21,11 @@ $install_products = mysql_query("CREATE TABLE IF NOT EXISTS " . TABLE_PRODUCTS .
 	UNIQUE KEY(product_id)
 	) ENGINE=InnoDB DEFAULT CHARSET=utf8;") or die("Error creating table TABLE_PRODUCTS:" . mysql_error());
 
-if($install_products)
+if($install_products
 {
 	echo "Table TABLE_PRODUCTS created successfully<br>";
 }
 
-/*insert the product data from csv file.
-$insert_products = mysql_query("LOAD DATA INFILE 'jdm_products.csv'
-		INTO TABLE ".TABLE_PRODUCTS."
-		FIELDS TERMINATED BY ','
-		OPTIONALLY ENCLOSED BY '\"' 
-		LINES TERMINATED BY '\n'
-		IGNORE 1 LINES (id,product_id,upc,sku,club,brand,category,price,cost,status,details,time)") or die("Error loading CSV file into MySQL table: " . mysql_error());
-		
-if($insert_products)
-{
-	echo "Table TABLE_PRODUCTS populated successfully<br>";
-}*/
 
 //create a table to contain shaft data
 $install_shafts = mysql_query("CREATE TABLE IF NOT EXISTS " . TABLE_SHAFTS . "(
@@ -62,18 +50,6 @@ if($install_shafts)
 	echo "Table TABLE_SHAFTS created successfully<br>";
 }
 
-/*insert the product data from csv file.
-$insert_shafts = mysql_query("LOAD DATA INFILE 'jdm_shafts.csv'
-		INTO TABLE ".TABLE_SHAFTS."
-		FIELDS TERMINATED BY ','
-		OPTIONALLY ENCLOSED BY '\"' 
-		LINES TERMINATED BY '\n'
-		IGNORE 1 LINES (id,product_id,upc,sku,shaft,brand,category,price,cost,status,details,time)") or die("Error loading CSV file into MySQL table: " . mysql_error());
-		
-if($insert_shafts)
-{
-	echo "Table TABLE_SHAFTS populated successfully<br>";
-}*/
 
 //create a table to contain inquiry data
 $install_inquiries = mysql_query("CREATE TABLE IF NOT EXISTS " . TABLE_INQUIRIES . "(
@@ -96,6 +72,7 @@ if($install_inquiries)
 {
 	echo "Table TABLE_INQUIRIES created successfully<br>";
 }
+
 		
 //create a table to contain user data
 $install_users = mysql_query("CREATE TABLE IF NOT EXISTS " . USERS . "(
@@ -122,6 +99,7 @@ if($install_users)
 	echo "Table USERS created successfully<br>";
 }
 
+
 //create the table that stores some text associate with each user
 $details = mysql_query("CREATE TABLE IF NOT EXISTS ".USER_DETAILS." (
 	details_id int(11) unsigned NOT NULL AUTO_INCREMENT,
@@ -130,6 +108,7 @@ $details = mysql_query("CREATE TABLE IF NOT EXISTS ".USER_DETAILS." (
 	PRIMARY KEY (details_id)
 	) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;");
 
+	
 //create the table that stores blog posts with each user
 $blog = mysql_query("CREATE TABLE IF NOT EXISTS ".USER_BLOG." (
 	blog_id int(11) unsigned NOT NULL AUTO_INCREMENT,
@@ -148,5 +127,48 @@ if($details && $blog)
 else
 {
 	echo "Unable to install tables";
-}		
+}	
+
+
+/*** insert data from CSV files ***/
+
+insert the product data from csv file.
+$insert_products = mysql_query("LOAD DATA INFILE 'jdm_products.csv'
+		INTO TABLE ".TABLE_PRODUCTS."
+		FIELDS TERMINATED BY ','
+		OPTIONALLY ENCLOSED BY '\"' 
+		LINES TERMINATED BY '\n'
+		IGNORE 1 LINES (id,product_id,upc,sku,club,brand,category,price,cost,status,details,time)") or die("Error loading CSV file into MySQL table: " . mysql_error());
+		
+if($insert_products)
+{
+	echo "Table TABLE_PRODUCTS populated successfully<br>";
+}
+	
+insert the product data from csv file.
+$insert_shafts = mysql_query("LOAD DATA INFILE 'jdm_shafts.csv'
+		INTO TABLE ".TABLE_SHAFTS."
+		FIELDS TERMINATED BY ','
+		OPTIONALLY ENCLOSED BY '\"' 
+		LINES TERMINATED BY '\n'
+		IGNORE 1 LINES (id,product_id,upc,sku,shaft,brand,category,price,cost,status,details,time)") or die("Error loading CSV file into MySQL table: " . mysql_error());
+		
+if($insert_shafts)
+{
+	echo "Table TABLE_SHAFTS populated successfully<br>";
+}
+
+//insert the product data from csv file.
+$insert_inquiries = mysql_query("LOAD DATA INFILE 'jdm_inquiries.csv'
+		INTO TABLE ".TABLE_INQUIRIES."
+		FIELDS TERMINATED BY ','
+		OPTIONALLY ENCLOSED BY '\"' 
+		LINES TERMINATED BY '\n'
+		IGNORE 1 LINES (id,brand,category,club,shaft,quantity,customer,email,phone,subscribe,comment,time)") or die("Error loading CSV file into MySQL table: " . mysql_error());
+		
+if($insert_inquiries)
+{
+	echo "Table TABLE_INQUIRIES populated successfully<br>";
+}
+	
 ?>

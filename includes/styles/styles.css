@@ -1,6 +1,8 @@
 body {
 	margin: 0px auto;
 	padding: 0px auto;
+    color: #333333;
+    font-family: Verdana,Arial,sans-serif;
 	font-size: 14px;
 }
 pre {
@@ -99,7 +101,7 @@ div.nav {
 	padding-left: 10px;
 }
 
-/*User Blog*/
+/***USER BLOG***/
 table#user_blog {
 	width: 100%;
 }
@@ -111,5 +113,71 @@ table#user_blog th  {
 table#user_blog td {
 	text-align: center;
 	padding: 20px;
+}
 
+.wrapper {
+	width: 900px;
+	margin: 0 auto;
+}
+.container_left {
+	width: 540px;
+	float: left;
+}
+.container_right {
+	width: 360px;
+	float :left;
+}
+
+/***QUOTE FORM***/
+/*product detail accordion*/
+#accordion {
+    width: 500px;
+}
+.product_image, .product_details {
+}
+
+/*sticky quote form with scroll*/
+#form_wrapper {
+    padding: 25px;
+	width: 310px;
+	background-color: #eee;
+}
+.stick {
+    position: fixed;
+    top: 10px;
+}
+.clear {
+    clear: both;
+}
+
+/*quote form*/
+.ui-widget {
+    margin-bottom: 18px;
+}
+.ui-widget label{
+    font-size: 14px;
+}
+#quote_form label {
+    display: block;
+    font-size: 1.1em;
+    font-weight: bold;
+}
+#quote_form input , #quote_form textarea {
+    font-family: Verdana,Arial,sans-serif;
+	font-size: 1em;
+} 
+#quote_form input {
+    height: 26px;
+    width: 280px;
+}
+input#subscribe {
+    width: 15px;
+    height: 15px;
+}
+.red {
+	color: #f00;
+}
+#form_wrapper h2 {
+	padding: 0;
+	margin: 0;
 }

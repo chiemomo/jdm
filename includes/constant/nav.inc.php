@@ -30,11 +30,14 @@
 				<!-- USER BLOG link -->
 				<li <?php if(basename($_SERVER['SCRIPT_NAME']) == 'user_blog.php') { ?>class="current"<?php } ?>><a href="<?php echo SITE_BASE; ?>/user_blog.php">User Blog</a></li>
 				
-				<?php
+				<!-- QUOTE FORM link -->
+				<li <?php if(basename($_SERVER['SCRIPT_NAME']) == 'quote_form.php') { ?>class="current"<?php } ?>><a href="<?php echo SITE_BASE; ?>/quote_form.php">Get A Quote</a></li>
+
+			<?php
 			}
 			else	//else, a user must be logged in so we show them some different options
 			{
-				?>
+			?>
 				
 				<!-- SECURE HOME link -->
 				<li <?php if(strpos($_SERVER['SCRIPT_NAME'], 'users/index.php')) { ?>class="current"<?php } ?>><a href="<?php echo SITE_BASE; ?>/users/">Secure Home</a></li>
@@ -42,14 +45,16 @@
 				<!-- USER PROFILE link -->
 				<li <?php if(basename($_SERVER['SCRIPT_NAME']) == 'profile.php') { ?>class="current"<?php } ?>><a href="<?php echo SITE_BASE; ?>/users/profile.php">User Profile</a></li>
 					
-				<?php
-				if(is_admin()) {
-				?>
-					<!-- MANAGE USERS link: only available to administrators -->
-					<li <?php if(strpos($_SERVER['SCRIPT_NAME'], 'users/admin.php')) { ?>class="current"<?php } ?>><a href="<?php echo SITE_BASE; ?>/users/admin.php">Manage Users</a></li>
-				<?php
-				} 
-				?>
+			<?php
+			if(is_admin()) {
+			?>
+
+				<!-- MANAGE USERS link: only available to administrators -->
+				<li <?php if(strpos($_SERVER['SCRIPT_NAME'], 'users/admin.php')) { ?>class="current"<?php } ?>><a href="<?php echo SITE_BASE; ?>/users/admin.php">Manage Users</a></li>
+
+			<?php
+			} 
+			?>
 								
 				<!-- MY BLOG link -->
 				<li <?php if(basename($_SERVER['SCRIPT_NAME']) == 'my_blog.php') { ?>class="current"<?php } ?>><a href="<?php echo SITE_BASE; ?>/users/my_blog.php">My Blog</a></li>

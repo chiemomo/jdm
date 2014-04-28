@@ -284,7 +284,7 @@ function return_meta($title = NULL, $keywords = NULL, $description = NULL)
 {
 	if(is_null($title))
 	{
-		$title = "Home Improvement";
+		$title = "JDM Golf Clubs";
 	}
 
 	$meta = '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -303,7 +303,11 @@ function return_meta($title = NULL, $keywords = NULL, $description = NULL)
 				<meta name="copyright" content="Copyright '.date("Y").' Your site name here. All rights reserved." />
 				<meta name="author" content="Your site name here" />
 				<link rel="shortcut icon" type="image/x-icon" href="images/favicon.ico" />
+				<link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
+				<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+				<script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
 				<link rel="stylesheet" type="text/css" media="all" href="'.SITE_BASE.'/includes/styles/styles.css" />
+
 			';
 
 	echo $meta;
