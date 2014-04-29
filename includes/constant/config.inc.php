@@ -348,7 +348,7 @@ function store_image($tmp_filename){
 	$result = mysql_query($query, $link) or die (mysql_error());
 }
 
-/*Function to returns all images in the path*/
+/*Function to return all images in the path*/
 function get_images($path){
 
 	//initialize an empty array to hold the result
@@ -386,5 +386,41 @@ function get_images($path){
 
 	return $results;
 }
+
+
+/**** DB MODIFICATION *****/
+
+/*Function to generate HTML table from the tables*/
+//http://davidwalsh.name/html-mysql-php
+//http://www.php.net/manual/en/function.mysql-field-name.php
+//http://www.php.net/manual/en/function.mysql-num-fields.php
+
+$query_for_table = "";
+
+function generate_html_table() {
+	
+		global $query_for_table;
+	
+		echo '<table class="db_table">';
+		echo '<tr>';
+		//for field names
+		for ($i = 0; $i < mysql_num_fields($query_for_table); $i++) {
+			echo "<th>" . mysql_field_name($query_for_table, $i) . "</th>";
+		}
+		echo "<th>Edit</th>";	
+		echo '</tr>';
+		//for values
+		while($row = mysql_fetch_row($query_for_table)) {
+			echo '<tr>';
+			foreach($row as $key=>$value) {
+				echo '<td>',$value,'</td>';
+			}
+			//to edit the row
+			echo "<td><a href='edit_blog.php'>edit</td>";
+			echo '</tr>';
+		}
+		echo '</table><br />';
+	}
+
 
 ?>
