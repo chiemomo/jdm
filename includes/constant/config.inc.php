@@ -225,11 +225,11 @@ function logout($lm = NULL)
 
 	if(isset($lm))
 	{
-		header("Location: ".SITE_BASE."/login.php?msg=".$lm);
+		header("Location: ".SITE_BASE."/users/login.php?msg=".$lm);
 	}
 	else
 	{
-		header("Location: ".SITE_BASE."/login.php");
+		header("Location: ".SITE_BASE."/users/login.php");
 	}
 }
 

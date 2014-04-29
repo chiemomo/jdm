@@ -1,5 +1,5 @@
 <?php
-require 'includes/constant/config.inc.php';
+require '../includes/constant/config.inc.php';
 
 //Pre-assign our variables to avoid undefined indexes
 $username = NULL;
@@ -98,8 +98,6 @@ return_meta("Log in to your account");
 </head>
 <body>
 <div id="container">
-
-	<?php include 'includes/constant/nav.inc.php'; ?>
 
 	<?php
 	//Show message if isset

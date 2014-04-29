@@ -54,7 +54,7 @@ fclose($file_1);
 
 //Example: Open and read a CSV file
 
-$csv_filename = "review_assignments.csv";
+$csv_filename = "jdm_products_test.csv";
 $csv_file = fopen( $csv_filename, "r" );
 
 while (true){

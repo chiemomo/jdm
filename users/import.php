@@ -7,10 +7,7 @@ return_meta("");
 //http://www.johnboy.com/blog/tutorial-import-a-csv-file-using-php-and-mysql
 //http://www.johnboy.com/scripts/import-csv-file-with-php-mysql/import.phps
 
-$query_for_import = "INSERT INTO contacts (contact_first, contact_last, contact_email) VALUES";
-$number_of_columns = 3;
-
-if (isset($_POST['submit'])) {
+if (isset($_POST['submit_club'])) {
 
 	if ($_FILES['csv']['size'] > 0) {
 
@@ -20,57 +17,109 @@ if (isset($_POST['submit'])) {
 		
 		//loop through the csv file and insert into database
 		do {
-			if ($data[0]) {
-				mysql_query($query_for_import.
-					"("
-					for ($i = 0; $i < $number_of_columns; $i++) {
-						"'".addslashes($data[$i])."',"
-					}
-					
-					if ($i = $number_of_columns-1) {
-						"'".addslashes($data[$i])."'"
-					}
-					")"
-				);
-			}
-		} while ($data = fgetcsv($handle,1000,",","'"));
-
-//ORG
-
-		//loop through the csv file and insert into database
-		do {
-			if ($data[0]) {
-				mysql_query("INSERT INTO contacts (contact_first, contact_last, contact_email) VALUES
+			if ($data[1]) {
+				mysql_query("INSERT INTO ".TABLE_PRODUCTS." (product_id, club, brand, category, price, cost, status, details) VALUES
 					(
 						'".addslashes($data[0])."',
 						'".addslashes($data[1])."',
-						'".addslashes($data[2])."'
+						'".addslashes($data[2])."',
+						'".addslashes($data[3])."',
+						'".addslashes($data[4])."',
+						'".addslashes($data[5])."',
+						'".addslashes($data[6])."',
+						'".addslashes($data[7])."'
 					)
 				");
 			}
-		} while ($data = fgetcsv($handle,1000,",","'")); 
-	
+		} while ($data = fgetcsv($handle,1000,",","'"));
+		//
+
 		//redirect
 		header('Location: import.php?success=1'); die;
 
 	}
+
+    fclose($handle);
 	
 }
-/*
-//http://wininterview.blogspot.in/2013/01/read-and-write-csv-file-in-php.html
-$row = 1;
-if (($handle = fopen("test.csv", "r")) !== FALSE) {
-    while (($data = fgetcsv($handle, 1000, ",")) !== FALSE) {
-        $num = count($data);
-        echo "<p> $num fields in line $row: <br /></p>\n";
-        $row++;
-        for ($c=0; $c < $num; $c++) {
-            echo $data[$c] . "<br />\n";
-        }
-    }
+
+if (isset($_POST['submit_shaft'])) {
+
+	if ($_FILES['csv']['size'] > 0) {
+
+		//get the csv file
+		$file = $_FILES['csv']['tmp_name'];
+		$handle = fopen($file,"r");
+		
+		//loop through the csv file and insert into database
+		do {
+			if ($data[1]) {
+				mysql_query("INSERT INTO ".TABLE_SHAFTS." (product_id, shaft, brand, category, price, cost, status, details) VALUES
+					(
+						'".addslashes($data[0])."',
+						'".addslashes($data[1])."',
+						'".addslashes($data[2])."',
+						'".addslashes($data[3])."',
+						'".addslashes($data[4])."',
+						'".addslashes($data[5])."',
+						'".addslashes($data[6])."',
+						'".addslashes($data[7])."'
+					)
+				");
+			}
+		} while ($data = fgetcsv($handle,1000,",","'"));
+		//
+
+		//redirect
+		header('Location: import.php?success=1'); die;
+
+	}
+
     fclose($handle);
+	
+}
+
+
+		//count the line 1
+		
+//		for ($i = 0; $i < mysql_num_fields($query_for_table); $i++) {
+	//		echo "<th>" . mysql_field_name($query_for_table, $i) . "</th>";
+		//}
+
+		
+		/*
+		
+		function readCSV($csvFile){
+
+			$file_handle = fopen($csvFile, 'r');
+			while (!feof($file_handle) ) {
+			$line_of_text[] = fgetcsv($file_handle, 1024);
+			}
+			fclose($file_handle);
+			return $line_of_text;
+			}
+
+			// Set path to CSV file
+			$csvFile = 'jdm_products_test.csv';
+
+			//calling the function
+			$csv = readCSV($csvFile);
+			if(!empty($csv)){
+				foreach($csv as $file){
+					//inserting into database
+					$query_insert = "insert into csv_data_upload set 
+						name    =   '".$file[0]."',
+						value   =   '".$file[1]."'";
+						echo $query_insert;
+					$insert = mysql_query($query_insert);   
+			  }
+		}else{
+		   echo 'Csv is empty'; 
+    
 }
 */
+
+
 ?>
 
 </head>
@@ -84,10 +133,18 @@ if (($handle = fopen("test.csv", "r")) !== FALSE) {
 <?php if (!empty($_GET['success'])) { echo "<b>Your file has been imported.</b><br><br>"; } //generic success notice ?>
 
 <form action="" method="post" enctype="multipart/form-data" name="form1" id="form1">
-  Choose your file: <br />
+
+<p>Upload a CSV file to add Clubs</p>
+<p>Choose your file: </p>
   <input type="file" name="csv" id="csv" />
-  <input type="submit" name="submit" value="Submit" />
-</form>
+  <input type="submit" name="submit_club" value="Submit" />
+
+<p>Upload a CSV file to add Shafts</p>
+<p>Choose your file: </p>
+  <input type="file" name="csv" id="csv" />
+  <input type="submit" name="submit_shaft" value="Submit" />
+
+  </form>
 
 </body>
 </html>

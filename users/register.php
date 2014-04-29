@@ -1,7 +1,7 @@
 <?php
-require 'includes/constant/config.inc.php';
+require '../includes/constant/config.inc.php';
 
-include_once 'includes/swift/lib/swift_required.php';
+include_once '../includes/swift/lib/swift_required.php';
 
 $meta_title = "Register an account";
 
@@ -45,7 +45,7 @@ return_meta($meta_title);
 <body>
 <div id="container">
 
-	<?php include 'includes/constant/nav.inc.php'; ?>
+	<?php include '../includes/constant/nav.inc.php'; ?>
 
 	<?php
 	//Show message if isset
