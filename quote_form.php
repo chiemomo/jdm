@@ -62,7 +62,7 @@ return_meta();
 				}
 			);
 
-/*			//PROCESS FORM SUBMISSION & PASS IT ON TO PHP
+			/*PROCESS FORM SUBMISSION & PASS IT ON TO PHP
 			$(".submit").click(function()
 			{
 				
@@ -74,8 +74,8 @@ return_meta();
 				var quantity = $("#quantity").val();
 				var comment = $("#comment").val();
 			
-				/* what if a customer uncheck the subscription box?*/
-/*				if(document.getElementById("subscribe").checked){
+				// what if a customer uncheck the subscription box?
+				if(document.getElementById("subscribe").checked){
 					var subscribe = 'yes';
 				} else {
 					var subscribe = 'no';
@@ -93,9 +93,9 @@ return_meta();
 					var datastring = "customer=" + customer + "&email=" + email + "&club=" + club + "&shaft=" + shaft + "&quantity=" + quantity 
 					+ "&subscribe=" + subscribe +"&comment=" + comment;
 		 
-					/* AJAX request. The request is made to $_SERVER['PHP_SELF']
-					The request is handled by checking for $_POST data (line 5)	*/
-/*					$.ajax( 
+					//AJAX request. The request is made to $_SERVER['PHP_SELF']
+					//The request is handled by checking for $_POST data (line 5)
+					$.ajax( 
 						{
 						type: "POST",
 						url: "<?php echo $_SERVER['PHP_SELF']; ?>?cmd=add", 
