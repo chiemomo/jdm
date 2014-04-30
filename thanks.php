@@ -22,10 +22,10 @@ if($_POST) //Check for post data
 
 
 //Swift
-$username = "umikoariko";
-$email_password = "umineko1234";
-$email_from = "umikoariko@gmail.com";
-$from_name = "Umi Neko";
+$username = "";
+$email_password = "";
+$email_from = "";
+$from_name = "";
 
 
 //Compute prices for quote
@@ -106,7 +106,7 @@ Please reply to the comment if there is.\n";
 
 $subject_staff = "A JDM quote is sent to " . $customer_name;
 
-//send_email("chiemomo@gmail.com",$content_staff,$subject_staff);
+//send_email("",$content_staff,$subject_staff);
 
 ?>
 </head>
