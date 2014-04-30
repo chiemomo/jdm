@@ -3,8 +3,8 @@
 $frontend_pages = array("Home","Get A Quote","About");
 $frontend_links = array("index.php","quote_form.php","about.php");
 
-$admin_pages = array("Home","Clubs","Shafts","Inquiries","Import","Profile","Logout");
-$admin_links = array("index.php","list_club.php","list_shaft.php","list_inquiry.php","import.php","profile.php","logout.php");
+$admin_pages = array("Home","Clubs","Shafts","Inquiries","Import","Profile","Add Users","Logout");
+$admin_links = array("index.php","list_club.php","list_shaft.php","list_inquiry.php","import.php","profile.php","register.php","logout.php");
 ?>
 <div class="nav">
 	<ul>
@@ -29,7 +29,8 @@ $admin_links = array("index.php","list_club.php","list_shaft.php","list_inquiry.
 		else	//else, a user must be logged in so we show them some different options
 		{
 			for ($i = 0; $i < count($admin_pages); $i++){
-				if(!strpos($_SERVER['SCRIPT_NAME'], "/qb/".$admin_links[$i]) and basename($_SERVER['SCRIPT_NAME']) ==  $admin_links[$i]) { 
+				//if(!strpos($_SERVER['SCRIPT_NAME'], "/users/".$admin_links[$i]) and basename($_SERVER['SCRIPT_NAME']) ==  $admin_links[$i]) { 
+				if(!strpos($_SERVER['SCRIPT_NAME'], "/users/".$admin_links[$i]) and basename($_SERVER['SCRIPT_NAME']) ==  $admin_links[$i]) { 
 				$class = "active";
 			}
 		else

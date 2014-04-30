@@ -1,5 +1,5 @@
 <?php
-/*Secured user only page*/
+/*ADMIN index.php - secured user only page*/
 include '../includes/constant/config.inc.php';
 secure_page();
 

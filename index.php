@@ -1,5 +1,5 @@
 <?php
-/*Index.php*/
+/*FRONTEND Index.php*/
 include 'includes/constant/config.inc.php';
 session_start();
 return_meta();
