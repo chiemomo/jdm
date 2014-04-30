@@ -40,6 +40,11 @@ global $passsalt;
 $password_store_key = sha1("dsf4dgfd5s2");
 global $password_store_key;
 
+$company_name = "chie company";
+$company_address = "san diego, CA";
+$company_email = "chie@company.com";
+$company_phone = "888-888-8888";
+
 /********************/
 /**** FUNCTIONS *****/
 /********************/
