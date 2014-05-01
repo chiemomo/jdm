@@ -1,7 +1,7 @@
 <?php
 /*nav.inc.php*/
-$frontend_pages = array("Home","Get A Quote","About","Login");
-$frontend_links = array("index.php","quote_form.php","about.php","login.php");
+$frontend_pages = array("Home","Get A Quote","About");
+$frontend_links = array("index.php","quote_form.php","about.php");
 
 $admin_pages = array("Home","Clubs","Shafts","Inquiries","Import","Profile","Add Users","Logout");
 $admin_links = array("index.php","list_club.php","list_shaft.php","list_inquiry.php","import.php","profile.php","register.php","logout.php");
@@ -48,6 +48,7 @@ else	//else, a user must be logged in so we show them some different options
 <div id="mainWrapper">
 	<div class="header">
 		<div class="logo"><a href="<?php echo SITE_BASE."/admin"; ?>"><img src="<?php echo SITE_BASE; ?>/images/common/sprite.gif" alt="Fairway Golf Pro Shop, San Diego, California - Huge inventory, Scotty Cameron Putters, High quality Japanese golf clubs, Tour Golf Clubs and more!!" width="1" height="1" /></a></div>
+		<div class="header_r"><p>Hi <?php echo $_SESSION['fullname']; ?>, You are logged in.</p></div>
 	</div>
 	<div class="nav">
 		<ul>

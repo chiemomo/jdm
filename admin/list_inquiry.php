@@ -4,26 +4,19 @@ include '../includes/constant/config.inc.php';
 secure_page();
 return_meta("User blog including " .$_SESSION['fullname'] . "'s blog!");
 
+include '../includes/constant/nav.inc.php';
+
 ?>
-</head>
-<body>
-<div id="container">
 
-	<?php include '../includes/constant/nav.inc.php'; ?>
+<h1>Inquiries Record</h1>
 
-	<h1>Registered Shafts</h1>
-	<p>Click "Edit" to edit the shaft data.</p>
+<?php
 
-	<?php
+$query_for_table = mysql_query("SELECT * FROM ".TABLE_INQUIRIES." ORDER BY id;") or die(mysql_error());		
 
-	$query_for_table = mysql_query("SELECT * FROM ".TABLE_INQUIRIES." ORDER BY id;") or die(mysql_error());		
-
-	//constant/config.inc.php line 393
-	generate_html_table();
+//constant/config.inc.php line 393
+generate_html_table();
 	
-	?>
+include('../includes/constant/footer.inc.php');
 
-
-</div>
-</body>
-</html>
+?>

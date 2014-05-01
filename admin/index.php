@@ -2,13 +2,12 @@
 /*ADMIN index.php - secured user only page*/
 include '../includes/constant/config.inc.php';
 secure_page();
-
 return_meta("Welcome to the secured user area " .$_SESSION['fullname'] . "!");
-
 
 /****CHART****/
 //Retrieve data (all column) from the inquiry table
 	$query = "SELECT * FROM " . TABLE_INQUIRIES . " ORDER BY club DESC;";
+	//$query = "SELECT club, COUNT(*) AS CLUBCOUNT FROM " . TABLE_INQUIRIES . " GROUP BY club ORDER BY CLUBCOUNT DESC;";
 
 	//execute it
 	$result = mysql_query($query) or die("Failed to retrieve rows: " . mysql_error());
@@ -37,6 +36,7 @@ return_meta("Welcome to the secured user area " .$_SESSION['fullname'] . "!");
 
 //step 2-1: compute the order counts for each club
 	$counts_per_club = array();
+
 	foreach ($club as $cat_i){
 		$counts_per_club[$cat_i] = 0; //start with zero
 	}
@@ -45,18 +45,20 @@ return_meta("Welcome to the secured user area " .$_SESSION['fullname'] . "!");
 		//find the category of the current row
 		$current_row_club = $current_row['club'];
 		//echo "Incrementing club " . $current_row_club . "<br>";
-			
 		$counts_per_club[$current_row_club] ++; //increment the count for the club of the current row
 	}
+
+	arsort($counts_per_club, SORT_NUMERIC);
 	//print_r($counts_per_club); echo "<br><br>";
 
 //step 3: generate the Google Image Charts string
+
 	$chart_url_1 = "https://chart.googleapis.com/chart?";
 
 	//set static values
 	$chart_title = "Inquiries Per Club";
 	$x = 500;
-	$y = 400;
+	$y = 500;
 	$chart_type = "bhs";
 	$scale = "0,10";
 	$count_label = "N,333333,0,-1,14";
@@ -133,7 +135,6 @@ FROM " . TABLE_INQUIRIES . " GROUP BY date;";
 //step 2: no computing is needed since it's counted in the SQL query
 
 //step 3: generate the Google Image Charts string
-//https://chart.googleapis.com/chart?chtt=Inquiries%20and%20Subscribe%20Per%20Day&chs=700x300&cht=lc&chds=0,10&chm=N,00FF00,0,-1,14|N,0000FF,1,-1,14&chco=00FF00,0000FF&chdl=Inquiries|Subscriptions&chxt=x,y&chxl=0:|2014-04-20|2014-04-21|2014-04-22|2014-04-23|2014-04-24|2014-04-25|2014-04-27|1:|0|5|10&chd=t:1,1,1,2,6,10,1|1,1,1,2,5,6,0
 
 	$chart_url_2 = "https://chart.googleapis.com/chart?";
 
@@ -305,55 +306,28 @@ ORDER BY inquiries_jdm_chie.id;
 //CAHRT 3: END
 
 ?>
-</head>
-<body>
-<div id="container">
 
-	<?php include '../includes/constant/nav.inc.php'; ?>
+<?php include '../includes/constant/nav.inc.php'; ?>
 
-	<h1>Your name is <?php echo $_SESSION['fullname']; ?>!</h1>
-	<p>Your user id is <?php echo $_SESSION['user_id']; ?></p>
-	<p>Here is the information we store when a user logs in successfully:</p>
-	<pre><?php print_r($_SESSION); ?></pre>
+<h1>Quote Request Analytics</h1>
+<p>Hi <?php echo $_SESSION['fullname']; ?>, here is the most recent data.</p>
 
-	<?php
-	$s = mysql_query("SELECT * FROM ".USER_DETAILS." WHERE detail_user_id = '".$_SESSION['user_id']."'") or die(mysql_error());
-	if(mysql_num_rows($s) != 0)
-	{
-		echo "<h1>The database has this to say...</h1>";
-		while($r = mysql_fetch_array($s))
-		{
-			echo "<p>".nl2br($r['detail_notes'])."</p>";
-			echo "<hr />";
-		}
-	}
-	else
-	{
-		echo "<p>No details found.</p>";
-	}
-	?>
-
-	<p>Please put jdm_inquiries.csv in the HW_5-2_chie folder into C:\wamp\bin\mysql\mysql5.6.12\data\hci573 in order to populate tables.</p>
-
-	<!-- Chart 1 -->
-	<h2>This bar chart shows how many inquires each club has got.</h2>
-    <img src="<?php echo $chart_url_1;?>"></img>
-	<p>Chart URL: <?php echo $chart_url_1;?></p>
-	
-	<br><br>
-	
-	<!-- Chart 2 -->
-	<h2>This line chart shows number of inquiries and email letter subscriptions</h2>
-    <img src="<?php echo $chart_url_2;?>"></img>
-	<p>Chart URL: <?php echo $chart_url_2;?> </p>
-
-	<br><br>
-	
-	<!-- Chart 3 -->
-	<h2>This bar chart shows total value (club + shaft) of the most recent 20 quotes</h2>
-    <img src="<?php echo $chart_url_3;?>"></img>
-	<p>Chart URL: <?php echo $chart_url_3;?> </p>
-
+<!-- Chart 1 -->
+<div class="jp_about jp_wrap100">
+<h2>This bar chart shows how many inquires each club has got.</h2>
+<img src="<?php echo $chart_url_1;?>">
 </div>
-</body>
-</html>
+
+<!-- Chart 2 -->
+<div class="jp_about jp_wrap100">
+<h2>This line chart shows number of inquiries and email letter subscriptions</h2>
+<img src="<?php echo $chart_url_2;?>">
+</div>
+
+<!-- Chart 3 -->
+<div class="jp_about jp_wrap100">
+<h2>This bar chart shows total value (club + shaft) of the most recent 20 quotes</h2>
+<img src="<?php echo $chart_url_3;?>">
+</div>
+
+<?php include('../includes/constant/footer.inc.php'); ?>

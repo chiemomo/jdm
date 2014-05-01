@@ -24,27 +24,26 @@ if(isset($_POST['update']))
 	}
 
 }
+
+include '../includes/constant/nav.inc.php';
 ?>
-<script>
-</script>
-</head>
-<body>
-<div id="container">
 
-	<?php include '../includes/constant/nav.inc.php'; ?>
+<h1>Hey <?php echo $_SESSION['fullname']; ?>!  Update your profile!</h1>
 
-	<h1>Hey <?php echo $_SESSION['fullname']; ?>!  Update your profile!</h1>
+<?php
+if(isset($msg))
+{
+	echo '<div class="success">'.$msg.'</div>';
+}
 
-	<?php
-	if(isset($msg))
-	{
-		echo '<div class="success">'.$msg.'</div>';
-	}
+$in = mysql_query("SELECT *, AES_DECRYPT(usr_email, '$salt') AS email FROM ".USERS." WHERE id = '".$_SESSION['user_id']."'") or die("Unable to get your info!");
 
-	$in = mysql_query("SELECT *, AES_DECRYPT(usr_email, '$salt') AS email FROM ".USERS." WHERE id = '".$_SESSION['user_id']."'") or die("Unable to get your info!");
-	while($r = mysql_fetch_array($in))
-	{
-	?>
+while($r = mysql_fetch_array($in))
+{
+?>
+
+<p>Here is the information we store when a user logs in successfully:</p>
+<pre><?php print_r($_SESSION); ?></pre>
 
 	<form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" id="profile_form">
 	<table cellspacing="5" cellpadding="5" border="0">
@@ -76,9 +75,7 @@ if(isset($_POST['update']))
 	</table>
 	</form>
 
-	<?php
-	}
-	?>
-</div>
-</body>
-</html>
+<?php
+}
+
+include('../includes/constant/footer.inc.php'); ?>

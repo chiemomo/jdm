@@ -39,13 +39,10 @@ if(isset($_POST['add']))
 
 return_meta($meta_title);
 ?>
-<script>
-</script>
-</head>
-<body>
-<div id="container">
 
-	<?php include '../includes/constant/nav.inc.php'; ?>
+<?php include '../includes/constant/nav.inc.php'; ?>
+
+
 
 	<?php
 	//Show message if isset
@@ -91,6 +88,4 @@ return_meta($meta_title);
 		}
 		?>
 
-</div>
-</body>
-</html>
+<?php include('../includes/constant/footer.inc.php'); ?>
