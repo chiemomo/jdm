@@ -30,7 +30,7 @@ $admin_links = array("index.php","list_club.php","list_shaft.php","list_inquiry.
 		{
 			for ($i = 0; $i < count($admin_pages); $i++){
 				//if(!strpos($_SERVER['SCRIPT_NAME'], "/users/".$admin_links[$i]) and basename($_SERVER['SCRIPT_NAME']) ==  $admin_links[$i]) { 
-				if(!strpos($_SERVER['SCRIPT_NAME'], "/users/".$admin_links[$i]) and basename($_SERVER['SCRIPT_NAME']) ==  $admin_links[$i]) { 
+				if(!strpos($_SERVER['SCRIPT_NAME'], "/admin/".$admin_links[$i]) and basename($_SERVER['SCRIPT_NAME']) ==  $admin_links[$i]) { 
 				$class = "active";
 			}
 		else

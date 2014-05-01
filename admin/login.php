@@ -36,7 +36,7 @@ if(isset($_POST['login']))
 
 	if($approved == 0)
 	{
-		$err[] = "You must activate your account, and may do so <a href=\"users/activate.php\">here</a>";
+		$err[] = "You must activate your account, and may do so <a href=\"admin/activate.php\">here</a>";
 	}
 
 	if(empty($err))
@@ -75,7 +75,7 @@ if(isset($_POST['login']))
 				$msg = "Logged in successfully!";
 
 				//redirect to a new location
-				header("Location: ".SITE_BASE."/users");
+				header("Location: ".SITE_BASE."/admin");
 			} //end passwords matched
 			else
 			{

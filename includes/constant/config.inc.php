@@ -124,7 +124,7 @@ function add_user($fullname, $username, $password, $email, $date, $user_ip, $act
 				Password: ".$_POST['password']."\n\n
 
 				You must activate your account before you can actually do anything:\n
-				".SITE_BASE."/users/activate.php?user=".$md5_id."&activ_code=".$activation_code."\n\n\n
+				".SITE_BASE."/admin/activate.php?user=".$md5_id."&activ_code=".$activation_code."\n\n\n
 
 				Thank You,\n
 
@@ -162,7 +162,7 @@ function add_user($fullname, $username, $password, $email, $date, $user_ip, $act
 	return $err;
 }
 
-/*Function to secure pages and check users*/
+/*Function to secure pages and check admin users*/
 function secure_page()
 {
 	session_start();
@@ -200,7 +200,7 @@ function secure_page()
 	}
 }
 
-/*Function to logout users securely*/
+/*Function to logout admin users securely*/
 function logout($lm = NULL)
 {
 	if(!isset($_SESSION))
@@ -228,11 +228,11 @@ function logout($lm = NULL)
 
 	if(isset($lm))
 	{
-		header("Location: ".SITE_BASE."/users/login.php?msg=".$lm);
+		header("Location: ".SITE_BASE."/admin/login.php?msg=".$lm);
 	}
 	else
 	{
-		header("Location: ".SITE_BASE."/users/login.php");
+		header("Location: ".SITE_BASE."/admin/login.php");
 	}
 }
 
