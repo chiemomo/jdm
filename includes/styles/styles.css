@@ -1,371 +1,86 @@
-body {
-	margin: 0px auto;
-	padding: 0px auto;
-    color: #333333;
-    font-family: Verdana,Arial,sans-serif;
-	font-size: 14px;
-}
-pre {
-	margin-left: 20px;
-	padding: 10px;
-	background: #222; color: #fff;
-}
-p {
-	padding-bottom: 10px;
-}
-
+body { margin: 0px auto; padding: 0px auto; color: #333333; font-family: Verdana, Arial, sans-serif; font-size: 14px; }
+pre { margin-left: 20px; padding: 10px; background: #222; color: #fff; }
+p { padding-bottom: 10px; }
 a.button,
 button,
 input[type="submit"],
 input[type="reset"],
-input[type="button"] {
-	padding: 10px;
-	border: 2px solid #ccc;
-	cursor: pointer;
-}
-
+input[type="button"] { padding: 10px; border: 2px solid #ccc; cursor: pointer; }
 a.button:hover,
 button:hover,
 input[type="submit"]:hover,
 input[type="reset"]:hover,
-input[type="button"]:hover {
-	padding: 10px;
-	border: 2px solid #000;
-	cursor: pointer;
-	background: green;
-	color: #fff;
-}
-
-form {
-	margin: 50px;
-}
-
-#container {
-	margin: 0px auto;
-	padding: 0px auto;
-	width: 960px;
-}
-div.nav {
-	display: block;
-	width: 100%;
-	height: 50px;
-	margin-bottom: 10px;
-	font-size: 20px;
-	text-transform: uppercase;
-	border-bottom: 10px dotted #222;
-}
-.nav ul {
-	list-style-type: none;
-}
-
-.nav ul li {
-	list-style-type: none;
-	display: inline;
-	float: left;
-	padding: 10px;
-	text-align: center;
-}
-.nav ul li a {
-	color: #000;
-	text-decoration: none;
-}
-.nav ul li a:hover {
-	color: red;
-}
-.nav ul li.current, li.current a {
-	background: #ccc;
-}
-
-.success {
-	background: green;
-	color: #fff;
-	display: block;
-	margin: 20px;
-	padding: 10px;
-}
-.success a {
-	color: #000;
-	text-decoration: none;
-}
-.err {
-	background: red;
-	color: #000;
-	display: block;
-	margin: 20px;
-	padding: 10px;
-}
-
-/*Specific to jquery.validate*/
-.error {
-	color: red;
-	padding-left: 10px;
-}
-
-/***USER BLOG***/
-table#user_blog {
-	width: 100%;
-}
-table#user_blog th  {
-	text-transform: uppercase;
-	padding: 10px 20px;
-	background-color: #ccc;
-}
-table#user_blog td {
-	text-align: center;
-	padding: 20px;
-}
-
-.wrapper {
-	width: 900px;
-	margin: 0 auto;
-}
-.container_left {
-	width: 540px;
-	float: left;
-}
-.container_right {
-	width: 360px;
-	float :left;
-}
-
-/***QUOTE FORM***/
-/*product detail accordion*/
-#accordion {
-    width: 500px;
-}
-.product_image, .product_details {
-}
-
-/*sticky quote form with scroll*/
-#form_wrapper {
-    padding: 25px;
-	width: 310px;
-	background-color: #eee;
-}
-.stick {
-    position: fixed;
-    top: 10px;
-}
-.clear {
-    clear: both;
-}
-
-/*quote form*/
-.ui-widget {
-    margin-bottom: 18px;
-}
-.ui-widget label{
-    font-size: 14px;
-}
-#quote_form label {
-    display: block;
-    font-size: 1.1em;
-    font-weight: bold;
-}
-#quote_form input , #quote_form textarea {
-    font-family: Verdana,Arial,sans-serif;
-	font-size: 1em;
-} 
-#quote_form input {
-    height: 26px;
-    width: 280px;
-}
-input#subscribe {
-    width: 15px;
-    height: 15px;
-}
-.red {
-	color: #f00;
-}
-#form_wrapper h2 {
-	padding: 0;
-	margin: 0;
-}
-/***COLUMNS***/
-
-div.ad_heading {
-	border:1px solid #000;
-	margin-top:10px;
-	width:95%;
-	background:#000;
-	color:#fff;
-}
-
-.ad_square {
-	width:95%;
-	border: 1px solid #000;
-}
-
-.ad_square img {
-    width:90%; /* you can use % */
-    height: auto;
-	padding-left:5%;
-	padding-right:5%;
-}
-
-.main_entry {
-	width:96%;
-	height:200px;
-	margin:2%;
-	border:2px solid #000;
-	margin-bottom:3%;
-	margin-top:3%;
-}
-
-
-
-/****************************************************/
-/*            2-Column CSS							*/
-/****************************************************/
-body {
-	margin:0;
-	padding:0;
-	border:0;			/* This removes the border around the viewport in old versions of IE */
-	width:100%;
-	background:#fff;
-	min-width:600px;    	/* Minimum width of layout - remove line if not required */
-					/* The min-width property does not work in old versions of Internet Explorer */
-	font-size:90%;
-}
-a {
-	color:#369;
-}
-a:hover {
-	color:#fff;
-	background:#369;
-	text-decoration:none;
-}
-h1, h2, h3 {
-	margin:.8em 0 .2em 0;
-	padding:0;
-}
-p {
-	margin:.4em 0 .8em 0;
-	padding:0;
-}
-img {
-	margin:10px 0 5px;
-}
-#ads img {
-	display:block;
-	padding-top:10px;
-}
-
-/* Header styles */
-#header {
-	clear:both;
-	float:left;
-	width:100%;
-}
-#header {
-	border-bottom:1px solid #000;
-}
+input[type="button"]:hover { padding: 10px; border: 2px solid #000; cursor: pointer; background: green; color: #fff; }
+form { margin: 50px; }
+#container { margin: 0px auto; padding: 0px auto; width: 960px; }
+div.nav { display: block; width: 100%; height: 50px; margin-bottom: 10px; font-size: 20px; text-transform: uppercase; border-bottom: 10px dotted #222; }
+.nav ul { list-style-type: none; }
+.nav ul li { list-style-type: none; display: inline; float: left; padding: 10px; text-align: center; }
+.nav ul li a { color: #000; text-decoration: none; }
+.nav ul li a:hover { color: red; }
+.nav ul li.current,
+li.current a { background: #ccc; }
+.success { background: green; color: #fff; display: block; margin: 20px; padding: 10px; }
+.success a { color: #000; text-decoration: none; }
+.err { background: red; color: #000; display: block; margin: 20px; padding: 10px; }  /*Specific to jquery.validate*/
+.error { color: red; padding-left: 10px; }  /***USER BLOG***/
+table#user_blog { width: 100%; }
+table#user_blog th { text-transform: uppercase; padding: 10px 20px; background-color: #ccc; }
+table#user_blog td { text-align: center; padding: 20px; }
+.wrapper { width: 900px; margin: 0 auto; }
+.container_left { width: 540px; float: left; }
+.container_right { width: 360px; float :left; }  /***QUOTE FORM***/ /*product detail accordion*/
+#accordion { width: 500px; }
+.product_image,
+.product_details { }  /*sticky quote form with scroll*/
+.clear { clear: both; }
+#sticker { padding: 25px; margin: 20px 0; width: 310px; background-color: #eee; }
+.stick { position: fixed; top: 10px; }  /*quote form*/
+.ui-widget { margin-bottom: 18px; }
+.ui-widget label { font-size: 14px; }
+#quote_form label { display: block; font-size: 1.1em; font-weight: bold; }
+#quote_form input,
+#quote_form textarea { font-family: Verdana, Arial, sans-serif; font-size: 1em; }
+#quote_form input { height: 26px; width: 280px; }
+input#subscribe { width: 15px; height: 15px; }
+.red { color: #f00; }
+#form_wrapper h2 { padding: 0; margin: 0; } /***COLUMNS***/
+div.ad_heading { border:1px solid #000; margin-top:10px; width:95%; background:#000; color:#fff; }
+.ad_square { width:95%; border: 1px solid #000; }
+.ad_square img { width:90%; /* you can use % */ height: auto; padding-left:5%; padding-right:5%; }
+.main_entry { width:96%; height:200px; margin:2%; border:2px solid #000; margin-bottom:3%; margin-top:3%; }    /****************************************************/ /*            2-Column CSS							*/ /****************************************************/
+body { margin:0; padding:0; border:0;			/* This removes the border around the viewport in old versions of IE */ width:100%; background:#fff; min-width:600px;    	/* Minimum width of layout - remove line if not required */ 					/* The min-width property does not work in old versions of Internet Explorer */ font-size:90%; }
+a { color:#369; }
+a:hover { color:#fff; background:#369; text-decoration:none; }
+h1,
+h2,
+h3 { margin:.8em 0 .2em 0; padding:0; }
+p { margin:.4em 0 .8em 0; padding:0; }
+img { margin:10px 0 5px; }
+#ads img { display:block; padding-top:10px; }  /* Header styles */
+#header { clear:both; float:left; width:100%; }
+#header { border-bottom:1px solid #000; }
 #header p,
 #header h1,
-#header h2 {
-	padding:.4em 15px 0 15px;
-	margin:0;
-}
-#header ul {
-	clear:left;
-	float:left;
-	width:100%;
-	list-style:none;
-	margin:10px 0 0 0;
-	padding:0;
-}
-#header ul li {
-	display:inline;
-	list-style:none;
-	margin:0;
-	padding:0;
-}
-#header ul li a {
-	display:block;
-	float:left;
-	margin:0 0 0 1px;
-	padding:3px 10px;
-	text-align:center;
-	background:#eee;
-	color:#000;
-	text-decoration:none;
-	position:relative;
-	left:15px;
-	line-height:1.3em;
-}
-#header ul li a:hover {
-	background:#369;
-	color:#fff;
-}
+#header h2 { padding:.4em 15px 0 15px; margin:0; }
+#header ul { clear:left; float:left; width:100%; list-style:none; margin:10px 0 0 0; padding:0; }
+#header ul li { display:inline; list-style:none; margin:0; padding:0; }
+#header ul li a { display:block; float:left; margin:0 0 0 1px; padding:3px 10px; text-align:center; background:#eee; color:#000; text-decoration:none; position:relative; left:15px; line-height:1.3em; }
+#header ul li a:hover { background:#369; color:#fff; }
 #header ul li a.active,
-#header ul li a.active:hover {
-	color:#fff;
-	background:#000;
-}
-#header ul li a span {
-	display:block;
-}
-/* 'widths' sub menu */
-#layoutdims {
-	clear:both;
-	background:#eee;
-	border-top:4px solid #000;
-	margin:0;
-	padding:6px 15px !important;
-	text-align:right;
-}
-/* column container */
-.colmask {
-	position:relative;	/* This fixes the IE7 overflow hidden bug */
-	clear:both;
-	float:left;
-	width:100%;			/* width of whole page */
-	overflow:hidden;		/* This chops off any overhanging divs */
-}
-/* common column settings */
+#header ul li a.active:hover { color:#fff; background:#000; }
+#header ul li a span { display:block; } /* 'widths' sub menu *
+/ #layoutdims { 	clear:both; 	background:#eee; 	border-top:4px solid #000; 	margin:0; 	padding:6px 15px !important; 	text-align:right; } /* column container */
+.colmask { position:relative;	/* This fixes the IE7 overflow hidden bug */ clear:both; float:left; width:100%;			/* width of whole page */ overflow:hidden;		/* This chops off any overhanging divs */ } /* common column settings */
 .colright,
 .colmid,
-.colleft {
-	float:left;
-	width:100%;
-	position:relative;
-	
-}
+.colleft { float:left; width:100%; position:relative; }
 .col1,
 .col2,
-.col3 {
-	float:left;
-	position:relative;
-	padding:0 0 1em 0;
-	overflow:hidden;
-}
-
-
-
-/* 2 Column (right menu) settings */
-.rightmenu {
-	background:#eee;		/* right column background colour */
-}
-.rightmenu .colleft {
-	right:25%;			/* right column width */
-	background:#fff;		/* left column background colour */
-}
-.rightmenu .col1 {
-	width:71%;			/* left column content width (left column width minus left and right padding) */
-	left:27%;			/* (right column width) plus (left column left padding) */
-}
-.rightmenu .col2 {
-	width:21%;			/* right column content width (right column width minus left and right padding) */
-	left:31%;			/* (right column width) plus (left column left and right padding) plus (right column left padding) */
-}
-/* Footer styles */
-#footer {
-	clear:both;
-	float:left;
-	width:100%;
-	border-top:1px solid #000;
-}
-#footer p {
-	padding:10px;
-	margin:0;
-}
+.col3 { float:left; position:relative; padding:0 0 1em 0; overflow:hidden; }    /* 2 Column (right menu) settings */
+.rightmenu { background:#eee;		/* right column background colour */ }
+.rightmenu .colleft { right:25%;			/* right column width */ background:#fff;		/* left column background colour */ }
+.rightmenu .col1 { width:71%;			/* left column content width (left column width minus left and right padding) */ left:27%;			/* (right column width) plus (left column left padding) */ }
+.rightmenu .col2 { width:21%;			/* right column content width (right column width minus left and right padding) */ left:31%;			/* (right column width) plus (left column left and right padding) plus (right column left padding) */ } /* Footer styles */
+#footer { clear:both; float:left; width:100%; border-top:1px solid #000; }
+#footer p { padding:10px; margin:0; }

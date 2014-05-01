@@ -40,10 +40,11 @@ global $passsalt;
 $password_store_key = sha1("dsf4dgfd5s2");
 global $password_store_key;
 
-$company_name = "chie company";
-$company_address = "san diego, CA";
-$company_email = "chie@company.com";
-$company_phone = "888-888-8888";
+$company_name = "Fairway Golf";
+$company_address = "5040 Convoy St., San Diego, CA 92111";
+$company_email = "cs@fairwaygolfusa.com";
+$company_phone = "1-877-509-0830";
+$company_url = "http://www.fairwaygolfusa.com";
 
 /********************/
 /**** FUNCTIONS *****/
@@ -228,11 +229,11 @@ function logout($lm = NULL)
 
 	if(isset($lm))
 	{
-		header("Location: ".SITE_BASE."/admin/login.php?msg=".$lm);
+		header("Location: ".SITE_BASE."/login.php?msg=".$lm);
 	}
 	else
 	{
-		header("Location: ".SITE_BASE."/admin/login.php");
+		header("Location: ".SITE_BASE."/login.php");
 	}
 }
 
@@ -309,12 +310,15 @@ function return_meta($title = NULL, $keywords = NULL, $description = NULL)
 				<link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
 				<script src="//code.jquery.com/jquery-1.10.2.js"></script>
 				<script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
-				<link rel="stylesheet" type="text/css" media="all" href="'.SITE_BASE.'/includes/styles/styles.css" />
-
+				<link rel="stylesheet" type="text/css" media="all" href="'.SITE_BASE.'/includes/styles/jdm.css" />
 			';
 
 	echo $meta;
 }
+/*
+				<link rel="stylesheet" type="text/css" media="all" href="'.SITE_BASE.'/includes/styles/j_club_copy.css" />
+				<link rel="stylesheet" type="text/css" media="all" href="'.SITE_BASE.'/includes/styles/landing_en_ver3.css" />
+*/
 
 /*Function to validate email addresses*/
 function check_email($email)
@@ -523,6 +527,7 @@ function send_email($email_to, $content, $subject){
 	//create arrays holding the information about sender and receiver
 	$from = array($email_from => $from_name);
 	$to = array($email_to);
+	$bcc = "chie@fairwaygolf.com";
 
 	//setup the body of the emal
 	$email_subject = $subject;
@@ -532,6 +537,7 @@ function send_email($email_to, $content, $subject){
 	$message = Swift_Message::newInstance($email_subject);
 	$message->setFrom($from);
 	$message->setTo($to);
+	$message->addBcc($bcc); // Using addBcc() to add recipients iteratively
 	$message->setBody($email_body);
 
 	//finally, send it!

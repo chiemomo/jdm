@@ -20,11 +20,19 @@ if($_POST) //Check for post data
 	mysql_query($query) or die(mysql_error());
 }
 
+$club = "club a";
+$shaft = "shaft a";
+$quantity = "8";
+$customer_name = "momotaro";
+$customer_email = "chiemomo@gmail.com";
+$comment = "hello";
+$subscribe = "yes";
+
 
 //Swift
-$username = "";
+$username = "umikoariko";
 $email_password = "";
-$email_from = "";
+$email_from = "umikoariko@gmail.com";
 $from_name = "";
 
 
@@ -51,7 +59,7 @@ Your comment: " . $comment;
 }
 
 //generate email content to send to customers
-$content_customer = "Dear " . $customer_name .",\n\n
+$email_content = "Dear " . $customer_name .",\n\n
 
 Thank you for your interest on " . $club . ".\n
 Here is the custom quote with your selected specifications.\n\n
@@ -70,63 +78,35 @@ Total Price: $" . $total_price . "\n\n
 * Free shipping is available for JDM orders.\n
 * CA sales tax is applied for a shipment within California.\n\n
 
-To place this order or for further questions, simply reply to this email or call our customer service at XXX-XXX-XXXX.\n
+To place this order or for further questions, simply reply to this email or call our customer service at " . $company_phone . ".\n
 Thank you again and we are looking forward to hearing from you soon!\n\n
 
-" . $company_name .
-$company_address .
-$company_email .
-$company_phone;
+" . $company_name . "\n
+" . $company_address . "\n
+" . $company_email . "\n
+" . $company_phone . "\n
+" . $company_url;
 
-$subject_customer = "Custom quote for " . $club;
+$email_subject = "Custom quote for " . $club;
 
-//echo $content_customer;
 //send it to the customer
-//send_email($customer_email,$content_customer,$subject_customer);
-
-//generate email content to send to staff
-$content_staff = "A new JDM quote request is in!\n\n
-
-Customer Name: " . $customer_name . "\n
-Customer Email: " . $customer_email . "\n\n
-
---------------------------------\n
-Your Club: " . $club . "\n
-Your Shaft: " . $shaft . "\n\n
-
-Price per Club: $" . $club_price . "\n
-Price per Shaft: $" . $shaft_price . "\n
-Quantity : " . $quantity . "pc\n
---------------------------------\n
-Total Price: $" . $total_price . "\n\n
-
-" . $content_comment . "\n
---------------------------------\n\n
-Please reply to the comment if there is.\n";
-
-$subject_staff = "A JDM quote is sent to " . $customer_name;
-
-//send_email("",$content_staff,$subject_staff);
+send_email($customer_email,$email_content,$email_subject);
 
 ?>
-</head>
-<body>
-	<div id="container">
 	
-	<?php include 'includes/constant/nav.inc.php'; ?>
+<?php include 'includes/constant/nav.inc.php'; ?>
 
-	<p>Thank you for your interest!</p>
-	<p>A custom quote for your JDM will be sent to your email address.<br>
-	If you do not receive the quote within 5 min, please submit the form again or contact us at <?php echo $company_email; ?> or <?php echo $company_phone; ?>.</p>
-	
-	<p>Your request has been sent as below:<br>
-	Your Name: <span class="your_info"><?php echo $customer_name; ?></span><br> 
-	Your Email: <span class="your_info"><?php echo $customer_email; ?></span><br> 
-	Your Club: <span class="your_info"><?php echo $club; ?></span><br>
-	Your Shaft: <span class="your_info"><?php echo $shaft; ?></span><br>
-	Quantity: <span class="your_info"><?php echo $quantity; ?></span><br>
-	Comment: <span class="your_info"><?php echo $comment; ?></span><br>
-	Newsletter Subscription: <span class="your_info"><?php echo $subscribe; ?></span></p>
-	</div>
-</body>
-</html> 
+<p>Thank you for your interest!</p>
+<p>A custom quote for your JDM will be sent to your email address.<br>
+If you do not receive the quote within 5 min, please submit the form again or contact us at <?php echo $company_email; ?> or <?php echo $company_phone; ?>.</p>
+
+<p>Your request has been sent as below:<br>
+Your Name: <span class="your_info"><?php echo $customer_name; ?></span><br> 
+Your Email: <span class="your_info"><?php echo $customer_email; ?></span><br> 
+Your Club: <span class="your_info"><?php echo $club; ?></span><br>
+Your Shaft: <span class="your_info"><?php echo $shaft; ?></span><br>
+Quantity: <span class="your_info"><?php echo $quantity; ?></span><br>
+Comment: <span class="your_info"><?php echo $comment; ?></span><br>
+Newsletter Subscription: <span class="your_info"><?php echo $subscribe; ?></span></p>
+
+<?php include('includes/constant/footer.inc.php'); ?>

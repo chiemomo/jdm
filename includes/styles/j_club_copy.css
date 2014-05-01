@@ -1,0 +1,255 @@
+html { height: 100%; zoom: 1; margin-bottom: 1px; }
+body { font-family: Arial, Helvetica, sans-serif; font-weight: normal; font-style: normal; text-align: left; text-decoration:none; color: #333333; margin:0; padding: 0; font-size: 12px; /* background: url() no-repeat center top; */ }
+div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, form, fieldset, p, blockquote, th, td { font-family: Arial, Helvetica, sans-serif; font-weight: normal; font-style: normal; border: none; text-align: left; text-decoration:none; color: #333333; margin:0; padding: 0; font-size: 12px; }
+input, button, textarea, select { font-family: Arial, Helvetica, sans-serif; font-size: 12px; color: #444444; margin:0; padding: 0; vertical-align: bottom; }
+dl, ul, ol { list-style: none; margin: 0; padding: 0; }
+img { border: none; vertical-align: top; margin: 0; padding: 0; line-height:1; }
+a { color: #333333; }
+a:hover, a:active { color: #444444; text-decoration: none; }
+div#mainWrapper { width: 1000px; margin: auto; padding-top: 3px; }
+#navBreadCrumb { clear:both; margin:1em 0; }
+#navBreadCrumb a { color: #0099CC; }
+#navBreadCrumb div { float:left }
+/* for US footer only */
+.footer p.pagetop { text-align: right; margin-bottom: 10px; }
+.footer_en div#footer_wrapper { border-top: #CC0000 solid 2px; width: 100%; }
+.footer_en ul { border-top: none; padding: 15px 0; width: 160px; float: left; }
+.footer_en ul li { float: none; background: none; height:18px; padding-left: 0; }
+.footer_en ul li a:link, .footer ul li a:visited { text-decoration: none; }
+.footer_en ul li a:hover, .footer ul li a:active { text-decoration: underline; }
+.footer_en ul#footer1 { width: 200px; }
+.footer_en li.signup { width: 170px; height: 70px; padding: 0; }
+.footer_en li.language { float: left; padding-right: 5px; }
+#footer_logo { width:100%; text-align:center; }
+#footer_logo li { display:inline; }
+#footer_logo li img { vertical-align:top; }
+/* eof US footer */
+
+/* bof JP footer */
+.clearboth { clear: both; }
+.footer_low2 { margin-top: 10px; }
+/* eof JP footer */
+
+/* US sprite */
+img.help { width:10px; height:14px; background:url(http://www.fairwaygolfusa.com/includes/templates/Fairwaygolf/images/common/sns-login-sp.gif) 0 0; }
+img.login { width:10px; height:14px; background:url(http://www.fairwaygolfusa.com/includes/templates/Fairwaygolf/images/common/sns-login-sp.gif) -10px 0; }
+img.account { width:10px; height:14px; background:url(http://www.fairwaygolfusa.com/includes/templates/Fairwaygolf/images/common/sns-login-sp.gif) -20px 0; }
+img.cart { width:10px; height:14px; background:url(http://www.fairwaygolfusa.com/includes/templates/Fairwaygolf/images/common/sns-login-sp.gif) -30px 0; }
+img.fb { width:25px; height:27px; background:url(http://www.fairwaygolfusa.com/includes/templates/Fairwaygolf/images/common/sns-login-sp.gif) 0 -14px; }
+img.tweet { width:25px; height:27px; background:url(http://www.fairwaygolfusa.com/includes/templates/Fairwaygolf/images/common/sns-login-sp.gif) -25px -14px; }
+img.utube { width:25px; height:27px; background:url(http://www.fairwaygolfusa.com/includes/templates/Fairwaygolf/images/common/sns-login-sp.gif) -50px -14px; }
+img.wpress { width:25px; height:27px; background:url(http://www.fairwaygolfusa.com/includes/templates/Fairwaygolf/images/common/sns-login-sp.gif) -75px -14px; }
+img.gplus { width:25px; height:27px; background:url(http://www.fairwaygolfusa.com/includes/templates/Fairwaygolf/images/common/sns-login-sp.gif) -100px -14px; }
+img.pagetop { width:80px; height:12px; background:url(http://www.fairwaygolfusa.com/includes/templates/Fairwaygolf/images/common/sns-login-sp.gif) -40px 0; }
+img.cyb { width:123px; height:45px; background:url(http://www.fairwaygolfusa.com/includes/templates/Fairwaygolf/images/common/card_sp.gif) 0 0; }
+img.amex { width:41px; height:45px; background:url(http://www.fairwaygolfusa.com/includes/templates/Fairwaygolf/images/common/card_sp.gif) -123px 0; }
+img.visa { width:61px; height:45px; background:url(http://www.fairwaygolfusa.com/includes/templates/Fairwaygolf/images/common/card_sp.gif) -164px 0; }
+img.paypal { width:52px; height:45px; background:url(http://www.fairwaygolfusa.com/includes/templates/Fairwaygolf/images/common/card_sp.gif) -225px 0; }
+img.diners { width:47px; height:45px; background:url(http://www.fairwaygolfusa.com/includes/templates/Fairwaygolf/images/common/card_sp.gif) -277px 0; }
+img.master { width:55px; height:45px; background:url(http://www.fairwaygolfusa.com/includes/templates/Fairwaygolf/images/common/card_sp.gif) -324px 0; }
+img.jcb { width:42px; height:45px; background:url(http://www.fairwaygolfusa.com/includes/templates/Fairwaygolf/images/common/card_sp.gif) -379px 0; }
+img.disc { width:54px; height:45px; background:url(http://www.fairwaygolfusa.com/includes/templates/Fairwaygolf/images/common/card_sp.gif) -421px 0; }
+img.us_ranking_1 { float: left; width:16px; height:20px; background:url(http://cdn2.fairwaygolfusa.com/fw_txt/img/common/ranking-spr.png) 0 0; }
+img.us_ranking_2 { float: left; width:16px; height:20px; background:url(http://cdn2.fairwaygolfusa.com/fw_txt/img/common/ranking-spr.png) 0 -20px; }
+img.us_ranking_3 { float: left; width:16px; height:20px; background:url(http://cdn2.fairwaygolfusa.com/fw_txt/img/common/ranking-spr.png) 0 -40px; }
+img.stars_5 { width:102px; height:20px; background:url(http://cdn2.fairwaygolfusa.com/fw_txt/img/common/ranking-spr.png) -16px 0; }
+img.stars_45 { width:102px; height:20px; background:url(http://cdn2.fairwaygolfusa.com/fw_txt/img/common/ranking-spr.png) -16px -20px; }
+img.stars_4 { width:102px; height:20px; background:url(http://cdn2.fairwaygolfusa.com/fw_txt/img/common/ranking-spr.png) -16px -40px; }
+img.golfwrx { width:130px; height:40px; background:url(../images/home/sponsor.gif) 0 0; }
+img.sandtrap { width:130px; height:40px; background:url(../images/home/sponsor.gif) 0 -80px; }
+img.golfspy { width:130px; height:40px; background:url(../images/home/sponsor.gif) 0 -40px; }
+/* US header */
+#htag, #htag a { background-color: #309730; color: #FFF; font-family: "Arial Black", Gadget, sans-serif; font-size: 16px; text-align: center; width: 100%; padding:8px 0; }
+div.header_en { height:50px; margin-top:5px; }
+#logo { float: left; width:400px; }
+.header_en #header_r_box { float: right; width:550px; }
+.header_en .email_signup { float:right; padding-left:10px; }
+.header_en #header_r_box p { width:440px; float:right; font-size:12px; font-family:"Palatino Linotype", "Book Antiqua", Palatino, serif; text-align:right }
+.header_en #header_r_box p span { font-weight: bold; }
+.sp_inst_q { position:absolute; right:10px; top:69px; z-index:1; color:#0074BE; font-size:1.2em; font-weight: bold; line-height:30px; padding-left: 40px; background: URL(http://www.fairwaygolfusa.com/includes/templates/Fairwaygolf/images/common/ask.png) 0 0 no-repeat; margin-bottom: 10px; }
+.sp_inst_q a { color:#0074BE; font-weight: bold; }
+/* US new mega */
+.wrap { width: 1000px; margin: 0 auto; padding: 6px 0; }
+.mega-menu ul, .mega-menu ul li, ul.mega-menu { list-style: none; }
+.mega-menu ul { position: relative; padding: 0; margin: 0; }
+.mega-menu ul li ul { display: none; }
+.mega-menu .sub { display: none; }
+.mega-menu .sub ul { display: block; }
+.white { font: normal 13px Arial, sans-serif; line-height: 16px; }
+.white ul.mega-menu, .white ul.mega-menu, .white ul.mega-menu li { margin: 0; padding: 0; border: none; }
+.white ul.mega-menu { background: #ccc url(http://www.fairwaygolfusa.com/includes/templates/Fairwaygolf/images/common/skins/images/bg_white.png) repeat-x 0 -80px; width: 100%; height: 40px; border-right: 1px solid #afafaf; border-left: 1px solid #afafaf; position: relative; }
+.white ul.mega-menu li { float: left; margin: 0; padding: 0; font-size: 13px; font-weight: bold; }
+.white ul.mega-menu li a { float: left; display: block; color: #000; padding: 12px 24px 12px 10px; background: url(http://www.fairwaygolfusa.com/includes/templates/Fairwaygolf/images/common/skins/images/bg_white.png) repeat-x 100% 0; text-shadow: 1px 1px 1px #fff; text-decoration: none; }
+.white ul.mega-menu li a.dc-mega { position: relative; }
+.white ul.mega-menu li a .dc-mega-icon { display: block; position: absolute; width: 8px; height: 6px; top: 18px; right: 10px; background: url(http://www.fairwaygolfusa.com/includes/templates/Fairwaygolf/images/common/skins/images/arrow.png) no-repeat 0 100%; }
+.white ul.mega-menu li.mega-hover a, .white ul.mega-menu li a:hover { background-position: 100% -40px; color: #000; text-shadow: none; }
+.white ul.mega-menu li.mega-hover a .dc-mega-icon { background-position: 0 100%; }
+.white ul.mega-menu li .sub-container { position: absolute; background: url(http://www.fairwaygolfusa.com/includes/templates/Fairwaygolf/images/common/skins/images/bg_sub_left.png) no-repeat 0 100%; padding-left: 20px; margin-left: -3px; }
+.white ul.mega-menu li .sub { background: url(http://www.fairwaygolfusa.com/includes/templates/Fairwaygolf/images/common/skins/images/bg_sub.png) no-repeat 100% 100%; padding: 20px 20px 20px 10px; }
+.white ul.mega-menu li .sub-container.mega .sub { padding: 20px 20px 10px 0; }
+.white ul.mega-menu li .sub .row { width: 100%; overflow: hidden; clear: both; }
+.white ul.mega-menu li .sub li { list-style: none; float: none; width: 170px; font-size: 1em; font-weight: normal; }
+.white ul.mega-menu li .sub li.mega-hdr { margin: 0 10px 10px 0; float: left; }
+.white ul.mega-menu li .sub li.mega-hdr.last { margin-right: 0; }
+.white ul.mega-menu li .sub a { background: none; border: none; text-shadow: none; color: #111; padding: 7px 10px; display: block; float: none; text-decoration: none; font-size: 0.9em; }
+.white ul.mega-menu li .sub li.mega-hdr a.mega-hdr-a { padding: 5px 5px 5px 15px; margin-bottom: 5px; background: #E3E3E3 url(http://www.fairwaygolfusa.com/includes/templates/Fairwaygolf/images/common/skins/images/bg_mega_hdr.png) no-repeat 0 0; text-transform: uppercase; font-weight: bold; color: #000; text-shadow: 1px 1px 1px #fff; }
+.white ul.mega-menu li .sub li.mega-hdr a.mega-hdr-a:hover { color: #a32403; text-shadow: none; }
+.white ul.mega-menu .sub li.mega-hdr li a { padding: 4px 5px 4px 20px; background: url(http://www.fairwaygolfusa.com/includes/templates/Fairwaygolf/images/common/skins/images/arrow_off.png) no-repeat 5px 8px; font-weight: normal; }
+.white ul.mega-menu .sub li.mega-hdr li a:hover { color: #a32403; background: #efefef url(http://www.fairwaygolfusa.com/includes/templates/Fairwaygolf/images/common/skins/images/arrow_on.png) no-repeat 5px 8px; }
+.white ul.mega-menu .sub ul li { padding-right: 0; }
+.white ul.mega-menu li .sub-container.non-mega .sub { padding: 20px 20px 20px 0; }
+.white ul.mega-menu li .sub-container.non-mega li { padding: 0; width: 190px; margin: 0; }
+.white ul.mega-menu li .sub-container.non-mega li a { padding: 7px 5px 7px 22px; background: url(http://www.fairwaygolfusa.com/includes/templates/Fairwaygolf/images/common/skins/images/arrow_off.png) no-repeat 7px 10px; }
+.white ul.mega-menu li .sub-container.non-mega li a:hover { color: #a32403; background: #efefef url(http://www.fairwaygolfusa.com/includes/templates/Fairwaygolf/images/common/skins/images/arrow_on.png) no-repeat 7px 10px; }
+.white ul.mega-menu li ul { display: none; }
+.white ul.mega-menu .sub ul { display: block; }
+.white ul.mega-menu li a.non_sub { padding-right: 8px; }
+.white ul.mega-menu li a.non_sub:hover { background-position: 100% -40px; color: #000; text-shadow: none; }
+.white ul.mega-menu li a.gmenu_bl { color: #fff; background: url(http://www.fairwaygolfusa.com/includes/templates/Fairwaygolf/images/common/skins/images/bg_blue.png) repeat-x 100% 0; text-shadow: 1px 1px 1px #000; }
+.white ul.mega-menu li a.gmenu_bl:hover { background-position: 100% -40px; color: #000; text-shadow: none; }
+.white ul.mega-menu li a.gmenu_bl .dc-mega-icon { background-position:left top; }
+.footer { clear: both; width: 100%; }
+/* general*/
+.dot { clear:both; display:block; margin:20px 0; padding-top:10px; border-top:#CCC thin dotted }
+.dot a { font-weight:bold; color:#999 }
+/*** home main content ***/
+/* width 100% container */
+.jp_wrap100 { clear: both; width: 100%; margin: 15px 0; }
+/* left local menu */
+#jp_menu { float: right; width: 175px; margin: 0 15px 15px 0; background-color:#FFF; }
+#jp_menu ul li { height: 20px; background:url(../images/home/jp_menu_bg.gif) left top repeat; text-align: center; padding-top: 3px; }
+#jp_menu ul li:hover { background:#404bff }
+#jp_menu ul li a { display:block; text-decoration:none; color: #FFF; }
+#jp_menu ul li.menu_title { background-image:none; border:#009 thin solid; color: #009; font-size: 1.4em; font-weight: bold; height:40px }
+#jp_menu ul li.menu_title:hover { background:none; }
+/* main banner - container */
+#jp_banner { float:left; width:710px; height: 230px; margin-bottom:10px; }
+/* main banner - slide show */
+#jp_banner .images { position:relative; cursor:pointer; }
+/* main banner - single slide */
+#jp_banner .images div { display:none; position:absolute; top:0; left:0; }
+/* main banner - disabled navigational button. is not needed when tabs are
+   configured with rotate: true */
+#jp_banner .disabled { visibility:hidden !important; }
+/* width 350px container */
+.jp_wrap350 { float:left; width:350px; margin-bottom:10px; }
+.jp_wrap350_left { margin-right:10px; }
+.jp_wrap350 h2 { font-family: "Arial Black", Gadget, sans-serif; font-size: 16px; color: #999; width: 350px; border-bottom:#999 thin solid; }
+/* rotating trend, logo img */
+#jp_trending, #jp_logo { width:348px; height: 180px; border:#999 thin solid; }
+#jp_logo { margin-right: 0; }
+/* rotating trend - root element for scrollable */
+#jp_trending .vertical { position:relative; overflow:hidden; height: 166px; width: 348px; }
+/* rotating trend - root element for scrollable items */
+#jp_trending .items { position:absolute; margin: 0px; }
+/* rotating trend - single scrollable item */
+/* with image #jp_trending .item { margin:0; padding:4px 20px; font-size:12px; height:80px; } */
+#jp_trending .item { margin:0; padding:5px 10px 4px 20px; font-size:12px; }
+#jp_trending .item img { float:left; margin-right:20px; height:70px; width:70px; }
+#jp_trending .item h3 { margin:0 0 5px 0; font-size:16px; color:#456; font-weight:normal; }
+/* rotating trend - the action buttons above the scrollable */
+#jp_trending #actions { width:338px; height: 8px; margin:0 5px; }
+#jp_trending #actions a { font-size:11px; cursor:pointer; color:#666; }
+#jp_trending #actions a:hover { text-decoration:underline; color:#000; }
+#jp_trending .disabled { visibility:hidden; }
+#jp_trending .next { float:right; }
+/* about buttons */
+.about_wrapper { float:left; /* important */ position:relative; /* important(so we can absolutely position the description div */ margin-bottom: 10px; }
+.about_wrapper_left { margin-right: 20px; }
+.about_bg { position:absolute; /* absolute position (so we can position it where we want)*/ top:0px; /* position will be on bottom */ right:0px; width:30%; height:100%; background-color:#FFF; opacity:0.6; /* transparency */ filter:alpha(opacity=60); /* IE transparency */ }
+p.about_content { opacity:1.0; filter:alpha(opacity=100); font-family:Georgia, "Times New Roman", Times, serif; font-size:16px; font-weight:bold; padding:10px; margin:0px; color:#000; }
+/* featured item list */
+#jp_featured li { margin-right: 17px; }
+.jp_about h2, #jp_featured h2 { font-family:"Palatino Linotype", "Book Antiqua", Palatino, serif; font-weight:bold; font-size: 22px; color: #999; width: 100%; border-bottom:#999 thin solid; margin-bottom:5px; }
+div.list_column4 ul:after { height: 0; visibility: hidden; content: "."; display: block; clear: both; }
+div.list_column4 ul { background: url(http://cdn5.fairwaygolfusa.com/includes/templates/Fairwaygolf/images/common/border_dot2.gif) repeat-x top left; }
+div.list_column4 ul.column4_top { background-image:none; }
+div.list_column4 ul li { float: left; width:140px; height: 260px; margin: 0 0 12px 0; text-align:center; }
+div.list_column4 ul li img { border: solid 1px #CCCCCC; }
+div.list_column4 ul li p.item_img { text-align:center; margin-bottom: 10px; }
+div.list_column4 ul li p.item_name { padding: 0 10px 5px 22px; background: url(http://cdn5.fairwaygolfusa.com/includes/templates/Fairwaygolf/images/common/list_img.gif) no-repeat 10px 5px; line-height:1.4 }
+div.list_column4 ul li p.normal_price, div.list_column4 ul li p.sale_price { padding-left: 22px; font-size: 16px; font-weight: bold; color: #FF0000; background: url(http://cdn5.fairwaygolfusa.com/includes/templates/Fairwaygolf/images/common/arrow.gif) no-repeat 22px 15px; line-height: 1.2; text-indent: 15px; }
+div.list_column4 ul li p.delete_price { font-size: 12px; font-weight: normal; color: #000000; background: none; text-indent: 0; line-height: 1.2; }
+div.list_column4 ul li p.delete_price span { text-decoration: line-through; font-weight: normal; }
+div.list_column4 ul li p.discount { padding-left: 22px; color: #99CC00; font-weight: bold; }
+/* about FG */
+.about_fg { clear: both; margin-top:20px; border:#999 thin solid; padding:10px; }
+.about_fg p { line-height:200%; font-size:1.2em; font-family:Georgia, "Times New Roman", Times, serif; }
+.box_grey { text-align: center; text-decoration: none; font: 16px/100% Arial, Helvetica, sans-serif; padding:10px; color: #333; border: solid 1px #e1e1e1; background: #fff; background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#f1f1f1)); background: -moz-linear-gradient(top, #fff, #f1f1f1); filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#f1f1f1');
+}
+.button { display: inline-block; zoom: 1; /* zoom and *display = ie7 hack for display:inline-block */ *display: inline;
+vertical-align: baseline; margin: 0 2px; outline: none; cursor: pointer; text-align: center; text-decoration: none; padding: .5em 2em .55em; text-shadow: 0 1px 1px rgba(0,0,0,.3); -webkit-border-radius: .5em; -moz-border-radius: .5em; border-radius: .5em; -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.2); -moz-box-shadow: 0 1px 2px rgba(0,0,0,.2); box-shadow: 0 1px 2px rgba(0,0,0,.2); }
+.button:hover { text-decoration: none; }
+.button:active { position: relative; top: 1px; }
+.medium { font-size: 12px; padding: .4em 1.5em .42em; }
+.small { font-size: 11px; padding: .2em 1em .275em; }
+.right_box .button { font-size:14px; font-weight:bold; font-family:"Palatino Linotype", "Book Antiqua", Palatino, serif; letter-spacing:0.1em; padding: .3em 1em .32em; }
+.left_box .button { color:#FFF; font-size:16px; font-weight:bold; font-family:"Palatino Linotype", "Book Antiqua", Palatino, serif; letter-spacing:0.1em; padding: .5em 2em .5em; }
+/* orange */
+.orange { color: #fef4e9; border: solid 1px #da7c0c; background: #f78d1d; background: -webkit-gradient(linear, left top, left bottom, from(#faa51a), to(#f47a20)); background: -moz-linear-gradient(top, #faa51a, #f47a20); filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#faa51a', endColorstr='#f47a20');
+}
+.orange:hover { background: #f47c20; background: -webkit-gradient(linear, left top, left bottom, from(#f88e11), to(#f06015)); background: -moz-linear-gradient(top, #f88e11, #f06015); filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#f88e11', endColorstr='#f06015');
+}
+.orange:active { color: #fcd3a5; background: -webkit-gradient(linear, left top, left bottom, from(#f47a20), to(#faa51a)); background: -moz-linear-gradient(top, #f47a20, #faa51a); filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#f47a20', endColorstr='#faa51a');
+}
+/* green */
+.green { color: #e8f0de; border: solid 1px #538312; background: #64991e; background: -webkit-gradient(linear, left top, left bottom, from(#7db72f), to(#4e7d0e)); background: -moz-linear-gradient(top, #7db72f, #4e7d0e);  filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#7db72f', endColorstr='#4e7d0e');
+}
+.green:hover { background: #538018; background: -webkit-gradient(linear, left top, left bottom, from(#6b9d28), to(#436b0c)); background: -moz-linear-gradient(top, #6b9d28, #436b0c);  filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#6b9d28', endColorstr='#436b0c');
+}
+.green:active { color: #a9c08c; background: -webkit-gradient(linear, left top, left bottom, from(#4e7d0e), to(#7db72f)); background: -moz-linear-gradient(top, #4e7d0e, #7db72f);  filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#4e7d0e', endColorstr='#7db72f');
+}
+.mfg li { float:left; margin:5px }
+.mfg img { width:110px; height:50px; background:url(../images/home/jdm-logo.gif); border:#CCC 1px solid }
+img.akira { background-position:0 0; }
+img.bridgestone { background-position:-110px 0; }
+img.epon { background-position:-220px 0; }
+img.fourteen { background-position:-330px 0; }
+img.fujikura { background-position:-440px 0; }
+img.geoteck { background-position:-550px 0; }
+img.gd { background-position:-660px 0; }
+img.honma { background-position:0 -50px; }
+img.iomic { background-position:-110px -50px; }
+img.maruman { background-position:-220px -50px; }
+img.mitsubishi { background-position:-330px -50px; }
+img.miura { background-position:-440px -50px; }
+img.miyazaki { background-position:-550px -50px; }
+img.mizuno { background-position:-660px -50px; }
+img.ns { background-position:0 -100px; }
+img.no1 { background-position:-110px -100px; }
+img.romaro { background-position:-220px -100px; }
+img.rc { background-position:-330px -100px; }
+img.srixon { background-position:-440px -100px; }
+img.yamaha { background-position:-550px -100px; }
+img.yonex { background-position:-660px -100px; }
+img.yururi { background-position:0 -150px; }
+.right_box { width:178px; float:right; padding:20px 15px; margin-bottom:40px }
+.left_box { width:738px; float:left; padding:20px 15px; }
+.right_box h3, .left_box h3 { color:#f78d1d; font-size:22px; font-weight:bold; font-family:"Palatino Linotype", "Book Antiqua", Palatino, serif; letter-spacing:0.1em; margin-bottom:10px; }
+.right_box h3 { height:30px; padding-left:35px; padding-top:5px; background:url(../../images/home/arrow.png) 0 0 no-repeat; margin-bottom:4px; }
+.left_box h3 { margin:1em 0; }
+.right_box li { font-weight:bold; padding-top:8px }
+h1 { font-family:"Palatino Linotype", "Book Antiqua", Palatino, serif; letter-spacing:0.2em; color: #fef4e9; font-weight:bold; font-size:22px; border: solid 1px #da7c0c; background: #f78d1d; background: -webkit-gradient(linear, left top, left bottom, from(#faa51a), to(#f47a20)); background: -moz-linear-gradient(top, #faa51a, #f47a20); filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#faa51a', endColorstr='#f47a20');
+padding:8px 0; text-align:center; }
+.left_box p, .right_box p { margin:1em 0; line-height:1.5em; font-size:13px }
+.right_box input, right_box select, .right_box textarea { padding:2px; }
+.recent { float:left; border:#999 1px dotted; padding:0 10px 20px; margin-right:20px; width:320px; height:440px;}
+img.playability { width:150px; height:90px; background:url(../../images/home/services_bw.gif) 0 0; }
+img.price_match { width:150px; height:90px; background:url(../../images/home/services_bw.gif) -150px 0; }
+img.free_shipping { width:150px; height:90px; background:url(../../images/home/services_bw.gif) -300px 0; }
+img.we_talk { width:150px; height:90px; background:url(../../images/home/services_bw.gif) -450px 0; }
+.jp_about { clear:both; padding:30px 0 }
+.jp_about ul li { float:left; width:249px; margin-right:1px; }
+.jp_about p { padding:10px; line-height:1.5em }
+.why_bullet li span { font-weight:bold; margin-right:0.5em; width: 1em; height: 1em; color: #fef4e9; background: #f78d1d; -moz-border-radius: .5em; -webkit-border-radius: .5em; border-radius: .5em; background: -webkit-gradient(linear, left top, left bottom, from(#faa51a), to(#f47a20)); background: -moz-linear-gradient(top, #faa51a, #f47a20); filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#faa51a', endColorstr='#f47a20');
+}
+.why_bullet li { width:330px; float:left; margin:10px; padding:8px; line-height:1.5em; font-size:13px; border: solid 1px #da7c0c; -webkit-border-radius: .5em; -moz-border-radius: .5em; border-radius: .5em; -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.2); -moz-box-shadow: 0 1px 2px rgba(0,0,0,.2); box-shadow: 0 1px 2px rgba(0,0,0,.2); }
+.jp_about .why_bullet li { width:220px; }
+.why_fg .why_bullet li { width:168px; margin:10px 0; padding:5px; line-height:1.5em; font-size:13px; border: solid 1px #da7c0c; -webkit-border-radius: .5em; -moz-border-radius: .5em; border-radius: .5em; -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.2); -moz-box-shadow: 0 1px 2px rgba(0,0,0,.2); box-shadow: 0 1px 2px rgba(0,0,0,.2); }
+.why_fg li p { margin:0 }
+.jp_about .mfg li { width:118px }
+.left_box h4 { font-weight:bold; font-size:1.2em; color:#333; margin-bottom:5px }
+.small { color:#999; font-size:9px }
+.linethrough { text-decoration: line-through; }
+.recent { float:left; border:#999 1px dotted; padding:0 10px 20px; margin:0 20px 20px 0; width:320px; height:440px; background-color:#FFF; }
+.recent_heading { font-weight:bold; color:#f78d1d }

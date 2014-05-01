@@ -23,7 +23,7 @@ if($_POST) //Check for post data
 
 //Swift
 $username = "umikoariko";
-$email_password = "umineko1234";
+$email_password = "";
 $email_from = "umikoariko@gmail.com";
 $from_name = "Umi Neko";
 

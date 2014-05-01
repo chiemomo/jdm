@@ -7,6 +7,11 @@ return_meta();
 	
 <?php include('includes/constant/nav.inc.php'); ?>
 	
+<div id="navBreadCrumb">
+	<img src="images/common/no-upcharge.png" width="1000" height="65" />
+	<p class="small">*No up-charge for Miura and Epon irons only. Other custom options available and may incur additional upcharge. Ask us for details.</p>
+</div>
+
 <div class="jp_wrap100">
 	<div class="left_box box_grey">
 		<h1>FIND THE BEST JAPANESE GOLF CLUBS HERE!</h1>
