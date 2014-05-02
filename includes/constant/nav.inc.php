@@ -3,8 +3,8 @@
 $frontend_pages = array("Home","Get A Quote","About");
 $frontend_links = array("index.php","quote_form.php","about.php");
 
-$admin_pages = array("Home","Inquiries","Clubs","Shafts","Import","Edit Profile","Add Users","Logout");
-$admin_links = array("index.php","list_inquiry.php","list_club.php","list_shaft.php","import.php","profile.php","register.php","logout.php");
+$admin_pages = array("Home","Inquiries","Clubs","Shafts","Import","Edit Profile","Add Users");
+$admin_links = array("index.php","list_inquiry.php","list_club.php","list_shaft.php","import.php","profile.php","register.php");
 ?>
 
 </head>

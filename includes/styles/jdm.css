@@ -82,8 +82,8 @@ input#subscribe { width: 15px; height: 15px; margin:0; padding:0; }
 /*== sticky footer ======================================*/
 /*.topWrapper { min-height: 100%; height: auto !important; height: 100%; margin: 0 auto -32em; } /* JDM */
 /*.footer, .push { height: 32em; } /* JDM */
-.topWrapper { min-height: 100%; height: auto !important; height: 100%; margin: 0 auto -14em; } /*-32em*/
-.footer, .push { height: 14em; } /*32em*/
+.topWrapper { min-height: 100%; height: auto !important; height: 100%; margin: 0 auto -10em; } /*-32em*/
+.footer, .push { height: 10em; } /*32em*/
 /*== layout & styling ======================================*/
 .jp_wrap100 { clear: both; width: 100%; margin: 15px 0; }
 .right_box { width:178px; float:right; padding:20px 15px; margin-bottom:40px }
