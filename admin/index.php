@@ -310,23 +310,22 @@ ORDER BY inquiries_jdm_chie.id;
 <?php include '../includes/constant/nav.inc.php'; ?>
 
 <h1>Quote Request Analytics</h1>
-<p>Hi <?php echo $_SESSION['fullname']; ?>, here is the most recent data.</p>
 
 <!-- Chart 1 -->
 <div class="jp_about jp_wrap100">
-<h2>This bar chart shows how many inquires each club has got.</h2>
+<h2>Quote Request per Club</h2>
 <img src="<?php echo $chart_url_1;?>">
 </div>
 
 <!-- Chart 2 -->
 <div class="jp_about jp_wrap100">
-<h2>This line chart shows number of inquiries and email letter subscriptions</h2>
+<h2>Quote Request and Newsletter Subscription per Day</h2>
 <img src="<?php echo $chart_url_2;?>">
 </div>
 
 <!-- Chart 3 -->
 <div class="jp_about jp_wrap100">
-<h2>This bar chart shows total value (club + shaft) of the most recent 20 quotes</h2>
+<h2>Possible Revenue per Quote (the most recent 20 quotes)</h2>
 <img src="<?php echo $chart_url_3;?>">
 </div>
 

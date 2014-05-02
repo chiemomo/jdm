@@ -1,7 +1,7 @@
 <?php
 require 'includes/constant/config.inc.php';
 require_once('includes/swift/lib/swift_required.php');
-return_meta();
+return_meta("Thank You!");
 
 //Process a submission on quote_form.php and insert the data into the inquiry table.
 if($_POST) //Check for post data
@@ -97,17 +97,42 @@ send_email($customer_email,$email_content,$email_subject);
 	
 <?php include 'includes/constant/nav.inc.php'; ?>
 
-<p>Thank you for your interest!</p>
-<p>A custom quote for your JDM will be sent to your email address.<br>
-If you do not receive the quote within 5 min, please submit the form again or contact us at <?php echo $company_email; ?> or <?php echo $company_phone; ?>.</p>
+<h1>Thank you for your interest!</h1>
+<p>A custom quote for your JDM golf clubs will be sent to your email address "<?php echo $customer_email; ?>" soon!<br>
+If you do not receive the quote within 15 minutes, please submit the form again or contact us at <?php echo $company_email; ?> or <?php echo $company_phone; ?>.</p>
 
-<p>Your request has been sent as below:<br>
-Your Name: <span class="your_info"><?php echo $customer_name; ?></span><br> 
-Your Email: <span class="your_info"><?php echo $customer_email; ?></span><br> 
-Your Club: <span class="your_info"><?php echo $club; ?></span><br>
-Your Shaft: <span class="your_info"><?php echo $shaft; ?></span><br>
-Quantity: <span class="your_info"><?php echo $quantity; ?></span><br>
-Comment: <span class="your_info"><?php echo $comment; ?></span><br>
-Newsletter Subscription: <span class="your_info"><?php echo $subscribe; ?></span></p>
+<table class="thanks">
+	<tr>
+		<td colspan="2" class="thanks_label">Sent Information</td>
+	</tr>
+	<tr>
+		<td class="thanks_label">Your Name: </td>
+		<td><?php echo $customer_name; ?></td>
+	</tr>
+	<tr>
+		<td class="thanks_label">Your Email: </td>
+		<td><?php echo $customer_email; ?></td>
+	</tr>
+	<tr>	
+		<td class="thanks_label">Your Club: </td>
+		<td><?php echo $club; ?></td>
+	</tr>
+	<tr>
+		<td class="thanks_label">Your Shaft: </td>
+		<td><?php echo $shaft; ?></td>
+	</tr>
+	<tr>
+		<td class="thanks_label">Quantity: </td>
+		<td><?php echo $quantity; ?></td>
+	</tr>
+	<tr>
+		<td class="thanks_label">Comment: </td>
+		<td><?php echo $comment; ?></td>
+	</tr>
+	<tr>
+		<td class="thanks_label">Newsletter Subscription: </td>
+		<td><?php echo $subscribe; ?></td>
+	</tr>
+</table>
 
 <?php include('includes/constant/footer.inc.php'); ?>

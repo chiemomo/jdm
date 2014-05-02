@@ -2,13 +2,13 @@
 /*Secured user only page*/
 include '../includes/constant/config.inc.php';
 secure_page();
-return_meta("User blog including " .$_SESSION['fullname'] . "'s blog!");
+return_meta("Shaft Entries");
 
 include '../includes/constant/nav.inc.php';
 
 ?>
 
-<h1>Shaft Records</h1>
+<h1>Shafts</h1>
 
 <?php
 

@@ -2,13 +2,13 @@
 /*Secured user only page*/
 include '../includes/constant/config.inc.php';
 secure_page();
-return_meta("User blog including " .$_SESSION['fullname'] . "'s blog!");
+return_meta("Customer Inquiries");
 
 include '../includes/constant/nav.inc.php';
 
 ?>
 
-<h1>Inquiries Record</h1>
+<h1>Inquiries</h1>
 
 <?php
 

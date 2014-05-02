@@ -2,7 +2,7 @@
 /*Secured user only page*/
 include '../includes/constant/config.inc.php';
 secure_page();
-return_meta("");
+return_meta("Import CSV Files");
 
 //http://www.johnboy.com/blog/tutorial-import-a-csv-file-using-php-and-mysql
 //http://www.johnboy.com/scripts/import-csv-file-with-php-mysql/import.phps
@@ -83,7 +83,7 @@ if (isset($_POST['submit_shaft'])) {
 
 <?php include '../includes/constant/nav.inc.php'; ?>
 
-<h1>Import Club &amp; Shaft Data with CSV Files</h1>
+<h1>Import Product Data with CSV Files</h1>
 
 <?php if (!empty($_GET['success'])) { echo "<b>Your file has been imported.</b><br><br>"; } //generic success notice ?>
 
@@ -97,6 +97,9 @@ if (isset($_POST['submit_shaft'])) {
 		<td><input type="file" name="csv" id="csv" /></td>
 		<td><input type="submit" name="submit_club" value="Import" class="button green" /></td>
 	</tr>
+</table>
+
+<table>
 	<tr>
 		<td colspan="2">Import Shaft Data</td>
 	</tr>
@@ -105,6 +108,7 @@ if (isset($_POST['submit_shaft'])) {
 		<td><input type="submit" name="submit_shaft" value="Import" class="button green" /></td>
 	</tr>
 </table>
+
 </form>
 
 <?php include('../includes/constant/footer.inc.php'); ?>

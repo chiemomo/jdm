@@ -2,13 +2,13 @@
 /*Secured user only page*/
 include '../includes/constant/config.inc.php';
 secure_page();
-return_meta("User blog including " .$_SESSION['fullname'] . "'s blog!");
+return_meta("Golf Club Entries");
 
 include '../includes/constant/nav.inc.php';
 
 ?>
 
-<h1>Club Head Records</h1>
+<h1>Golf Clubs</h1>
 
 <?php
 

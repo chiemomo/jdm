@@ -48,7 +48,7 @@ else	//else, a user must be logged in so we show them some different options
 <div id="mainWrapper">
 	<div class="header">
 		<div class="logo"><a href="<?php echo SITE_BASE."/admin"; ?>"><img src="<?php echo SITE_BASE; ?>/images/common/sprite.gif" alt="Fairway Golf Pro Shop, San Diego, California - Huge inventory, Scotty Cameron Putters, High quality Japanese golf clubs, Tour Golf Clubs and more!!" width="1" height="1" /></a></div>
-		<div class="header_r"><p>Hi <?php echo $_SESSION['fullname']; ?>, You are logged in.</p></div>
+		<div class="header_r"><p><b>Hi <?php echo $_SESSION['fullname']; ?>!</b>&nbsp;&nbsp;&nbsp;&nbsp;<a href="<?php echo SITE_BASE."/admin/logout.php"; ?>" class="bar_bg logout">LOGOUT</a></p></div>
 	</div>
 	<div class="nav">
 		<ul>

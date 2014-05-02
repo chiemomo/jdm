@@ -80,7 +80,7 @@ if(isset($_POST['login']))
 			else
 			{
 				//Passwords don't match, issue an error
-				$err[] = "Invalid User";
+				$err[] = "Invalid User or Password";
 			}
 		} //end if user found
 		else
@@ -91,7 +91,7 @@ if(isset($_POST['login']))
 	} //end if no error
 }  //end form posted
 
-return_meta("Log in to your account");
+return_meta("Administrator Login");
 ?>
 
 <?php include 'includes/constant/nav.inc.php'; ?>
@@ -118,8 +118,8 @@ return_meta("Log in to your account");
 	}
 	?>
 
-	<form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" id="login_form">
-	<table cellpadding="5" cellspacing="5" border="0">
+<form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" id="login_form" class="admin_form">
+<table cellpadding="5" cellspacing="5" border="0">
 	<tr>
 	<td>Username/Email:</td>
 	<td><input type="text" name="user" value="" class="required" /></td>
@@ -128,9 +128,9 @@ return_meta("Log in to your account");
 	<td><input type="password" name="pass" value="" class="required" /></td>
 	</tr>
 	<tr>
-	<td colspan="2" align="center"><input type="submit" name="login" value="Login" /></td>
+	<td colspan="2" align="center"><input type="submit" name="login" value="Login" class="button orange" /></td>
 	</tr>
-	</table>
-	</form>
+</table>
+</form>
 
 <?php include('includes/constant/footer.inc.php'); ?>
