@@ -121,9 +121,9 @@ input#subscribe { width: 15px; height: 15px; margin:0; padding:0; }
 .list_table { width:100%; margin:20px 0; border:#ccc solid 1px; }
 .list_table tr th { border:#ccc dotted 1px; padding:5px; text-align:center; font-weight:bold; }
 .list_table tr td { border:#ccc dotted 1px; padding:5px; text-align:center; }
-.admin_form table { margin:40px auto; padding:40px; border:#ccc solid 1px; }
+.admin_form { margin:40px auto; padding:40px; border:#ccc solid 1px; }
 .admin_form table tr td { margin:10px; padding:5px; }
-div.success, div.err { margin:20px; padding:20px; border:#ccc dashed 1px; text-align:center; color:#F00; text-transform:uppercase; font-weight:bold; font-size:1.2em; background-color:#eee; }
+div.success, div.err { margin:20px 0; padding:20px; border:#ccc dashed 1px; text-align:center; color:#F00; text-transform:uppercase; font-weight:bold; font-size:1.2em; background-color:#eee; }
 div.success { color:#79B22C; }
 /*== image sprite ======================================*/
 .mfg li { float:left; margin:5px }

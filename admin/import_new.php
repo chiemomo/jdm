@@ -7,6 +7,7 @@ return_meta("Import CSV Files");
 //http://www.johnboy.com/blog/tutorial-import-a-csv-file-using-php-and-mysql
 //http://www.johnboy.com/scripts/import-csv-file-with-php-mysql/import.phps
 
+//Insert data to the CLUB table
 if (isset($_POST['submit_club'])) {
 
 	if ($_FILES['csv']['size'] > 0) {
@@ -18,7 +19,7 @@ if (isset($_POST['submit_club'])) {
 		//loop through the csv file and insert into database
 		do {
 			if ($data[1]) {
-				mysql_query("INSERT INTO ".TABLE_PRODUCTS." (product_id, club, brand, category, price, cost, status, details) VALUES
+				mysql_query("INSERT INTO ".TABLE_PRODUCTS." (id,product_id,upc,sku,club,brand,category,price,cost,status,details,time) VALUES
 					(
 						'".addslashes($data[0])."',
 						'".addslashes($data[1])."',
@@ -27,7 +28,11 @@ if (isset($_POST['submit_club'])) {
 						'".addslashes($data[4])."',
 						'".addslashes($data[5])."',
 						'".addslashes($data[6])."',
-						'".addslashes($data[7])."'
+						'".addslashes($data[7])."',
+						'".addslashes($data[8])."',
+						'".addslashes($data[9])."',
+						'".addslashes($data[10])."',
+						'".addslashes($data[11])."'
 					)
 				");
 			}
@@ -35,10 +40,8 @@ if (isset($_POST['submit_club'])) {
 
 		//redirect
 		header('Location: import.php?success=1'); die;
-
+		fclose($handle);
 	}
-
-    fclose($handle);
 	
 }
 
@@ -70,11 +73,11 @@ if (isset($_POST['submit_shaft'])) {
 		} while ($data = fgetcsv($handle,1000,",","'"));
 
 		//redirect
-		header('Location: import.php?success=2'); die;
+		header('Location: import.php?success=1'); die;
 
 	}
 
-    //fclose($handle);
+    fclose($handle);
 	
 }
 
@@ -84,22 +87,30 @@ if (isset($_POST['submit_shaft'])) {
 
 <h1>Import Product Data with CSV Files</h1>
 
-<?php
-if (!empty($_GET['success'])) { 
-	echo "<div class='success'>Your file has been imported!</div>";
-} //generic success notice
-?>
+<?php if (!empty($_GET['success'])) { echo "<div class='success'>Your file has been imported.</div>"; } //generic success notice ?>
 
 <form action="" method="post" enctype="multipart/form-data" name="form1" id="form1" class="admin_form">
-	<p>Import Club Data</p>
-	<input type="file" name="csv" id="csv" />
-	<input type="submit" name="submit_club" value="Import" class="button green" />
-</form>
 
-<form action="" method="post" enctype="multipart/form-data" name="form2" id="form2" class="admin_form">
-	<p>Import Shaft Data</p>
-	<input type="file" name="csv" id="csv" />
-	<input type="submit" name="submit_shaft" value="Import" class="button green" />
+<table>
+	<tr>
+		<td colspan="2">Import Club Data</td>
+	</tr>
+	<tr>
+		<td><input type="file" name="csv" id="csv" /></td>
+		<td><input type="submit" name="submit_club" value="Import" class="button green" /></td>
+	</tr>
+</table>
+
+<table>
+	<tr>
+		<td colspan="2">Import Shaft Data</td>
+	</tr>
+	<tr>
+		<td><input type="file" name="csv" id="csv" /></td>
+		<td><input type="submit" name="submit_shaft" value="Import" class="button green" /></td>
+	</tr>
+</table>
+
 </form>
 
 <?php include('../includes/constant/footer.inc.php'); ?>
