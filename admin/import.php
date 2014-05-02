@@ -79,40 +79,6 @@ if (isset($_POST['submit_shaft'])) {
 	
 }
 
-/*
-//count the line 1
-for ($i = 0; $i < mysql_num_fields($query_for_table); $i++) {
-echo "<th>" . mysql_field_name($query_for_table, $i) . "</th>";
-}
-
-function readCSV($csvFile){
-
-	$file_handle = fopen($csvFile, 'r');
-	while (!feof($file_handle) ) {
-	$line_of_text[] = fgetcsv($file_handle, 1024);
-	}
-	fclose($file_handle);
-	return $line_of_text;
-	}
-
-	// Set path to CSV file
-	$csvFile = 'jdm_products_test.csv';
-
-	//calling the function
-	$csv = readCSV($csvFile);
-	if(!empty($csv)){
-		foreach($csv as $file){
-			//inserting into database
-			$query_insert = "insert into csv_data_upload set 
-				name    =   '".$file[0]."',
-				value   =   '".$file[1]."'";
-				echo $query_insert;
-			$insert = mysql_query($query_insert);   
-	  }
-}else{
-   echo 'Csv is empty';   
-}
-*/
 ?>
 
 <?php include '../includes/constant/nav.inc.php'; ?>
@@ -121,18 +87,24 @@ function readCSV($csvFile){
 
 <?php if (!empty($_GET['success'])) { echo "<b>Your file has been imported.</b><br><br>"; } //generic success notice ?>
 
-<form action="" method="post" enctype="multipart/form-data" name="form1" id="form1">
+<form action="" method="post" enctype="multipart/form-data" name="form1" id="form1" class="admin_form">
 
-<p>Add Clubs Here</p>
-<p>Choose your file: </p>
-  <input type="file" name="csv" id="csv" />
-  <input type="submit" name="submit_club" value="Submit" />
-
-<p>Add Shafts Here</p>
-<p>Choose your file: </p>
-  <input type="file" name="csv" id="csv" />
-  <input type="submit" name="submit_shaft" value="Submit" />
-
-  </form>
+<table>
+	<tr>
+		<td colspan="2">Import Club Data</td>
+	</tr>
+	<tr>
+		<td><input type="file" name="csv" id="csv" /></td>
+		<td><input type="submit" name="submit_club" value="Import" class="button green" /></td>
+	</tr>
+	<tr>
+		<td colspan="2">Import Shaft Data</td>
+	</tr>
+	<tr>
+		<td><input type="file" name="csv" id="csv" /></td>
+		<td><input type="submit" name="submit_shaft" value="Import" class="button green" /></td>
+	</tr>
+</table>
+</form>
 
 <?php include('../includes/constant/footer.inc.php'); ?>

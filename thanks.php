@@ -20,6 +20,7 @@ if($_POST) //Check for post data
 	mysql_query($query) or die(mysql_error());
 }
 
+/*
 $club = "club a";
 $shaft = "shaft a";
 $quantity = "8";
@@ -27,13 +28,13 @@ $customer_name = "momotaro";
 $customer_email = "chiemomo@gmail.com";
 $comment = "hello";
 $subscribe = "yes";
-
+*/
 
 //Swift
 $username = "umikoariko";
-$email_password = "";
+$email_password = "umichancute";
 $email_from = "umikoariko@gmail.com";
-$from_name = "";
+$from_name = "Fairway Golf, Inc.";
 
 
 //Compute prices for quote

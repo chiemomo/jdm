@@ -125,7 +125,7 @@ return_meta("Log in to your account");
 	<td><input type="text" name="user" value="" class="required" /></td>
 	</tr>
 	<td>Password:</td>
-	<td><input type="text" name="pass" value="" class="required" /></td>
+	<td><input type="password" name="pass" value="" class="required" /></td>
 	</tr>
 	<tr>
 	<td colspan="2" align="center"><input type="submit" name="login" value="Login" /></td>

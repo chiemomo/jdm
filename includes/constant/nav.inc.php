@@ -3,8 +3,8 @@
 $frontend_pages = array("Home","Get A Quote","About");
 $frontend_links = array("index.php","quote_form.php","about.php");
 
-$admin_pages = array("Home","Clubs","Shafts","Inquiries","Import","Profile","Add Users","Logout");
-$admin_links = array("index.php","list_club.php","list_shaft.php","list_inquiry.php","import.php","profile.php","register.php","logout.php");
+$admin_pages = array("Home","Inquiries","Clubs","Shafts","Import","Edit Profile","Add Users","Logout");
+$admin_links = array("index.php","list_inquiry.php","list_club.php","list_shaft.php","import.php","profile.php","register.php","logout.php");
 ?>
 
 </head>
@@ -70,13 +70,13 @@ else	//else, a user must be logged in so we show them some different options
 <?php
 }
 ?>
-
+<!--
 <div id="navBreadCrumb">
 <?php
-$crumbs = explode("/",$_SERVER["REQUEST_URI"]);
+/*$crumbs = explode("/",$_SERVER["REQUEST_URI"]);
 foreach($crumbs as $crumb){
     echo ucfirst(str_replace(array(".php","_"),array(""," "),$crumb) . ' ');
-}
+}*/
 ?>
 </div>
-
+-->

@@ -139,7 +139,7 @@ FROM " . TABLE_INQUIRIES . " GROUP BY date;";
 	$chart_url_2 = "https://chart.googleapis.com/chart?";
 
 	$chart_title = "Inquiries and Subscribe Per Day";
-	$x = 700;
+	$x = 1000;
 	$y = 300;
 	$chart_type = "lc";
 	$scale = "0,10";
@@ -255,7 +255,7 @@ ORDER BY inquiries_jdm_chie.id;
 	$chart_url_3 = "https://chart.googleapis.com/chart?";
 
 	$chart_title = "Quote";
-	$x = 700;
+	$x = 750;
 	$y = 400;
 	$chart_type = "bvs";
 	$scale = "0,5000";
