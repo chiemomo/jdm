@@ -58,7 +58,7 @@ return_meta("Welcome to the secured user area " .$_SESSION['fullname'] . "!");
 	//set static values
 	$chart_title = "Inquiries Per Club";
 	$x = 500;
-	$y = 500;
+	$y = 600;
 	$chart_type = "bhs";
 	$scale = "0,10";
 	$count_label = "N,333333,0,-1,14";
@@ -142,7 +142,7 @@ FROM " . TABLE_INQUIRIES . " GROUP BY date;";
 	$x = 1000;
 	$y = 300;
 	$chart_type = "lc";
-	$scale = "0,10";
+	$scale = "0,15";
 	$count_label = "N,00FF00,0,-1,14|N,0000FF,1,-1,14";
 	$colors = "00FF00,0000FF";
 	$legend = "Subscriptions|Inquiries";
@@ -160,7 +160,7 @@ FROM " . TABLE_INQUIRIES . " GROUP BY date;";
 	foreach ($date as $date_i){
 		$chart_url_2 .= "|" . $date_i;
 	}
-	$chart_url_2 .= "|1:|0|5|10";
+	$chart_url_2 .= "|1:|0|5|10|15";
 
 	//add number of subscriptions per day
 	$chart_url_2 .= "&chd=t:";

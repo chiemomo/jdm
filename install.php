@@ -100,36 +100,6 @@ if($install_users)
 }
 
 
-//create the table that stores some text associate with each user
-$details = mysql_query("CREATE TABLE IF NOT EXISTS ".USER_DETAILS." (
-	details_id int(11) unsigned NOT NULL AUTO_INCREMENT,
-	detail_user_id int(11) DEFAULT NULL,
-	detail_notes text,
-	PRIMARY KEY (details_id)
-	) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;");
-
-	
-//create the table that stores blog posts with each user
-$blog = mysql_query("CREATE TABLE IF NOT EXISTS ".USER_BLOG." (
-	blog_id int(11) unsigned NOT NULL AUTO_INCREMENT,
-	id bigint(20) NOT NULL,
-	blog_title text,
-	blog_entry text,
-	image longblob,
-	time_submitted timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE CURRENT_TIMESTAMP,
-	PRIMARY KEY (blog_id)
-	) ENGINE=InnoDB DEFAULT CHARSET=utf8;");
-
-if($details && $blog)
-{
-	echo "Installed tables successfully";
-}
-else
-{
-	echo "Unable to install tables";
-}	
-
-
 /*** insert data from CSV files ***/
 
 insert the product data from csv file.

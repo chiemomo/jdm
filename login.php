@@ -24,20 +24,13 @@ if(isset($_POST['login']))
 		$err[] = "You seem to have forgotten your password.";
 	}
 	//Select only ONE password from the db table if the username = username, or the user input email (after being encrypted) matches an encrypted email in the db
-	$q = mysql_query("SELECT usr_pwd, id, approved FROM ".USERS." WHERE user_name = '$username' OR usr_email = AES_ENCRYPT('$username', '$salt')") or die(mysql_error());
+	$q = mysql_query("SELECT usr_pwd, id FROM ".USERS." WHERE user_name = '$username' OR usr_email = AES_ENCRYPT('$username', '$salt')") or die(mysql_error());
 
 	//Select only the password if a user matched
 	
 	
-	list($pass, $userid, $approved) = mysql_fetch_row($q);
-	
-	
-	//now the variable $pass holds the value in column usr_pwd, $userid holds the value for id, and $approved holds the value for approved
-
-	if($approved == 0)
-	{
-		$err[] = "You must activate your account, and may do so <a href=\"admin/activate.php\">here</a>";
-	}
+	list($pass, $userid) = mysql_fetch_row($q);
+	//now the variable $pass holds the value in column usr_pwd, $userid holds the value for id
 
 	if(empty($err))
 	{
@@ -47,8 +40,8 @@ if(isset($_POST['login']))
 			if(hash_pass($pass2) === $pass)
 			{
 
-				$user_info = mysql_query("SELECT id, full_name, user_name, user_level FROM ".USERS." WHERE id = '$userid' LIMIT 1") or die("Unable to get user info");
-				list($id, $name, $username, $level) = mysql_fetch_row($user_info);
+				$user_info = mysql_query("SELECT id, full_name, user_name FROM ".USERS." WHERE id = '$userid' LIMIT 1") or die("Unable to get user info");
+				list($id, $name, $username) = mysql_fetch_row($user_info);
 
 				session_start();
 				//REALLY start new session (wipes all prior data)
@@ -86,7 +79,7 @@ if(isset($_POST['login']))
 		else
 		{
 			//No rows found in DB matching username or email, issue error
-			$err[] = "This user was not found in the database.  You suck.";
+			$err[] = "This user was not found in the database.";
 		}
 	} //end if no error
 }  //end form posted

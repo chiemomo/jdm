@@ -9,16 +9,16 @@ return_meta("Import CSV Files");
 
 if (isset($_POST['submit_club'])) {
 
-	if ($_FILES['csv']['size'] > 0) {
+	if ($_FILES['csv1']['size'] > 0) {
 
 		//get the csv file
-		$file = $_FILES['csv']['tmp_name'];
+		$file = $_FILES['csv1']['tmp_name'];
 		$handle = fopen($file,"r");
 		
 		//loop through the csv file and insert into database
 		do {
 			if ($data[1]) {
-				mysql_query("INSERT INTO ".TABLE_PRODUCTS." (product_id, club, brand, category, price, cost, status, details) VALUES
+				mysql_query("INSERT INTO ".TABLE_PRODUCTS." (product_id, club, brand, category, price, cost, status, details, time) VALUES
 					(
 						'".addslashes($data[0])."',
 						'".addslashes($data[1])."',
@@ -45,10 +45,10 @@ if (isset($_POST['submit_club'])) {
 //Insert data to the SHAFT table
 if (isset($_POST['submit_shaft'])) {
 
-	if ($_FILES['csv']['size'] > 0) {
+	if ($_FILES['csv2']['size'] > 0) {
 
 		//get the csv file
-		$file = $_FILES['csv']['tmp_name'];
+		$file = $_FILES['csv2']['tmp_name'];
 		$handle = fopen($file,"r");
 		
 		//loop through the csv file and insert into database
@@ -92,13 +92,13 @@ if (!empty($_GET['success'])) {
 
 <form action="" method="post" enctype="multipart/form-data" name="form1" id="form1" class="admin_form">
 	<p>Import Club Data</p>
-	<input type="file" name="csv" id="csv" />
+	<input type="file" name="csv1" id="csv1" />
 	<input type="submit" name="submit_club" value="Import" class="button green" />
 </form>
 
 <form action="" method="post" enctype="multipart/form-data" name="form2" id="form2" class="admin_form">
 	<p>Import Shaft Data</p>
-	<input type="file" name="csv" id="csv" />
+	<input type="file" name="csv2" id="csv1" />
 	<input type="submit" name="submit_shaft" value="Import" class="button green" />
 </form>
 

@@ -8,19 +8,19 @@ return_meta("Import CSV Files");
 //http://www.johnboy.com/scripts/import-csv-file-with-php-mysql/import.phps
 
 //Insert data to the CLUB table
-if (isset($_POST['submit_club'])) {
+if (isset($_POST['submit'])) {
 
-	if ($_FILES['csv']['size'] > 0) {
+	if ($_FILES['csv1']['size'] > 0) {
 
 		//get the csv file
-		$file = $_FILES['csv']['tmp_name'];
+		$file = $_FILES['csv1']['tmp_name'];
 		$handle = fopen($file,"r");
 		
 		//loop through the csv file and insert into database
-		do {
-			if ($data[1]) {
-				mysql_query("INSERT INTO ".TABLE_PRODUCTS." (id,product_id,upc,sku,club,brand,category,price,cost,status,details,time) VALUES
-					(
+		do { 
+			if ($data[1]) { 
+				mysql_query("INSERT INTO ".TABLE_PRODUCTS." (id, product_id, upc, sku, club, brand, category, price, cost, status, details, time) VALUES 
+					( 
 						'".addslashes($data[0])."',
 						'".addslashes($data[1])."',
 						'".addslashes($data[2])."',
@@ -32,33 +32,31 @@ if (isset($_POST['submit_club'])) {
 						'".addslashes($data[8])."',
 						'".addslashes($data[9])."',
 						'".addslashes($data[10])."',
-						'".addslashes($data[11])."'
-					)
-				");
-			}
-		} while ($data = fgetcsv($handle,1000,",","'"));
+						(".CURRENT_TIMESTAMP.")
+					) 
+				"); 
+			} 
+		} while ($data = fgetcsv($handle,1000,",","'")); 
 
-		//redirect
-		header('Location: import.php?success=1'); die;
 		fclose($handle);
+		
+		//redirect
+		header("Location: ".$_SERVER['PHP_SELF']."?success=1"); die;
+		
+
 	}
 	
-}
-
-//Insert data to the SHAFT table
-if (isset($_POST['submit_shaft'])) {
-
-	if ($_FILES['csv']['size'] > 0) {
+	if ($_FILES['csv2']['size'] > 0) {
 
 		//get the csv file
-		$file = $_FILES['csv']['tmp_name'];
+		$file = $_FILES['csv2']['tmp_name'];
 		$handle = fopen($file,"r");
 		
 		//loop through the csv file and insert into database
-		do {
-			if ($data[1]) {
-				mysql_query("INSERT INTO ".TABLE_SHAFTS." (product_id, shaft, brand, category, price, cost, status, details) VALUES
-					(
+		do { 
+			if ($data[1]) { 
+				mysql_query("INSERT INTO ".TABLE_SHAFTS." (id, product_id, upc, sku, shaft, brand, category, price, cost, status, details, time) VALUES 
+					( 
 						'".addslashes($data[0])."',
 						'".addslashes($data[1])."',
 						'".addslashes($data[2])."',
@@ -66,19 +64,23 @@ if (isset($_POST['submit_shaft'])) {
 						'".addslashes($data[4])."',
 						'".addslashes($data[5])."',
 						'".addslashes($data[6])."',
-						'".addslashes($data[7])."'
-					)
-				");
-			}
-		} while ($data = fgetcsv($handle,1000,",","'"));
+						'".addslashes($data[7])."',
+						'".addslashes($data[8])."',
+						'".addslashes($data[9])."',
+						'".addslashes($data[10])."',
+						(".CURRENT_TIMESTAMP.")
+					) 
+				"); 
+			} 
+		} while ($data = fgetcsv($handle,1000,",","'")); 
+
+		fclose($handle);
 
 		//redirect
-		header('Location: import.php?success=1'); die;
-
+		header("Location: ".$_SERVER['PHP_SELF']."?success=2"); die;
+	
 	}
 
-    fclose($handle);
-	
 }
 
 ?>
@@ -89,28 +91,16 @@ if (isset($_POST['submit_shaft'])) {
 
 <?php if (!empty($_GET['success'])) { echo "<div class='success'>Your file has been imported.</div>"; } //generic success notice ?>
 
-<form action="" method="post" enctype="multipart/form-data" name="form1" id="form1" class="admin_form">
+<form action="" method="post" enctype="multipart/form-data" name="form1" id="form1"> 
+  Choose your file: <br /> 
+  <input name="csv1" type="file" id="csv1" /> 
+  <input type="submit" name="submit" value="Submit" /> 
+</form> 
 
-<table>
-	<tr>
-		<td colspan="2">Import Club Data</td>
-	</tr>
-	<tr>
-		<td><input type="file" name="csv" id="csv" /></td>
-		<td><input type="submit" name="submit_club" value="Import" class="button green" /></td>
-	</tr>
-</table>
-
-<table>
-	<tr>
-		<td colspan="2">Import Shaft Data</td>
-	</tr>
-	<tr>
-		<td><input type="file" name="csv" id="csv" /></td>
-		<td><input type="submit" name="submit_shaft" value="Import" class="button green" /></td>
-	</tr>
-</table>
-
-</form>
+<form action="" method="post" enctype="multipart/form-data" name="form2" id="form2"> 
+  Choose your file: <br /> 
+  <input name="csv2" type="file" id="csv2" /> 
+  <input type="submit" name="submit" value="Submit" /> 
+</form> 
 
 <?php include('../includes/constant/footer.inc.php'); ?>

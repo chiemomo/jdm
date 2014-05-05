@@ -1,2 +1,2 @@
-product_id,club,brand,category,price,cost,status,details
-JDM005,Yururi Black Wedge,Yururi,Wedge,150,,,
+id,product_id,upc,sku,club,brand,category,price,cost,status,details,time
+,CUR005,,,ClubX,Yururi,Wedge,150,,,,

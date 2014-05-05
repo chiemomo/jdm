@@ -12,7 +12,8 @@ include '../includes/constant/nav.inc.php';
 
 <?php
 
-$query_for_table = mysql_query("SELECT * FROM ".TABLE_INQUIRIES." ORDER BY id;") or die(mysql_error());		
+//get all fields from the inquiry table and sort by date, newer comes to the top 
+$query_for_table = mysql_query("SELECT * FROM ".TABLE_INQUIRIES." ORDER BY time DESC;") or die(mysql_error());		
 
 //constant/config.inc.php line 393
 generate_html_table();
