@@ -58,7 +58,7 @@ $subscribe = "yes";
 
 //Swift
 $username = "umikoariko";
-$email_password = "umichancute";
+$email_password = "";
 $email_from = "umikoariko@gmail.com";
 $from_name = "Fairway Golf, Inc.";
 
