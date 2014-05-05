@@ -17,6 +17,7 @@ if (isset($_POST['submit'])) {
 		$handle = fopen($file,"r");
 		
 		//loop through the csv file and insert into database
+		//http://dev.mysql.com/doc/refman/5.1/en/insert-on-duplicate.html
 		do { 
 			if ($data[1]) { 
 				mysql_query("INSERT INTO ".TABLE_PRODUCTS." (id, product_id, upc, sku, club, brand, category, price, cost, status, details, time) VALUES 
@@ -33,8 +34,18 @@ if (isset($_POST['submit'])) {
 						'".addslashes($data[9])."',
 						'".addslashes($data[10])."',
 						(".CURRENT_TIMESTAMP.")
-					) 
-				"); 
+					) ON DUPLICATE KEY UPDATE
+						upc = '".addslashes($data[2])."',
+						sku = '".addslashes($data[3])."',
+						club = '".addslashes($data[4])."',
+						brand = '".addslashes($data[5])."',
+						category = '".addslashes($data[6])."',
+						price = '".addslashes($data[7])."',
+						cost = '".addslashes($data[8])."',
+						status = '".addslashes($data[9])."',
+						details = '".addslashes($data[10])."',
+						time = (".CURRENT_TIMESTAMP.")"
+				); 
 			} 
 		} while ($data = fgetcsv($handle,1000,",","'")); 
 
@@ -51,7 +62,7 @@ if (isset($_POST['submit'])) {
 		//get the csv file
 		$file = $_FILES['csv2']['tmp_name'];
 		$handle = fopen($file,"r");
-		
+			
 		//loop through the csv file and insert into database
 		do { 
 			if ($data[1]) { 
@@ -69,8 +80,18 @@ if (isset($_POST['submit'])) {
 						'".addslashes($data[9])."',
 						'".addslashes($data[10])."',
 						(".CURRENT_TIMESTAMP.")
-					) 
-				"); 
+					) ON DUPLICATE KEY UPDATE 
+						upc = '".addslashes($data[2])."',
+						sku = '".addslashes($data[3])."',
+						shaft = '".addslashes($data[4])."',
+						brand = '".addslashes($data[5])."',
+						category = '".addslashes($data[6])."',
+						price = '".addslashes($data[7])."',
+						cost = '".addslashes($data[8])."',
+						status = '".addslashes($data[9])."',
+						details = '".addslashes($data[10])."',
+						time = (".CURRENT_TIMESTAMP.")"
+				); 
 			} 
 		} while ($data = fgetcsv($handle,1000,",","'")); 
 
