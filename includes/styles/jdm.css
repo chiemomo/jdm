@@ -3,7 +3,7 @@
 html, body { height: 100%; }
 body { font-family: Arial, Helvetica, sans-serif; color: #333333; margin:0; padding: 0; font-size: 14px; line-height: 1.4em; text-align: left }
 div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, form, fieldset, p, blockquote, th, td { font-family: Arial, Helvetica, sans-serif; font-weight: normal; font-style: normal; border: none; text-align: left; text-decoration:none; color: #333333; margin:0; padding: 0; font-size: 14px; }
-input, button, textarea, select { font-family: Arial, Helvetica, sans-serif; font-size: 14px; color: #444444; margin:0; padding: 0; vertical-align: bottom; }
+input, button, textarea, select { font-family: Arial, Helvetica, sans-serif; font-size: 14px; color: #444444; margin:0; padding: 3px; vertical-align: bottom; }
 dl, ul, ol { list-style: none; margin: 0; padding: 0; }
 img { border: none; vertical-align: top; margin: 0; padding: 0; line-height:1; }
 a { color: #333333; }

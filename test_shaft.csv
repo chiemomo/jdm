@@ -1,0 +1,4 @@
+id,product_id,upc,sku,shaft,brand,category,price,cost,status,details,time
+,SHT0001,444,222,NS 950 Shaft,NS,Irons,20,10,available ,New NS shaft,
+,SHT0002,444,222,NS 1050 Shaft,NS,Irons,20,10,available ,New NS shaft,
+,SHT0003,444,222,NS Pro Shaft,NS,Irons,20,10,available ,New NS shaft,

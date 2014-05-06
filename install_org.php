@@ -102,7 +102,7 @@ if($install_users)
 //manually insert some information about a few users so that we can see it show up on the page once those users log in
 $detail_insert = mysql_query("INSERT INTO ".USERS." (id,md5_id,full_name,user_name,usr_email,user_level,usr_pwd,date,users_ip,approved,activation_code,ckey,ctime,num_logins,last_login)
 VALUES
-(7,'8f14e45fceea167a5a36dedd4bea2543','Chie Tuller','chie','chie@test.com',1,'44a00c076bb8ca34f6cb1ca8fb300838779ff52f','2014-05-02','127.0.0.1',1,9307,'','',15,'2014-05-06 07:53:41');") or die(mysql_error());
+(7,'8f14e45fceea167a5a36dedd4bea2543','Chie Tuller','chie','chie@test.com',1,'44a00c076bb8ca34f6cb1ca8fb300838779ff52f','2014-05-02','127.0.0.1',1,9307,,,15,'2014-05-06 07:53:41');") or die(mysql_error());
 
 
 

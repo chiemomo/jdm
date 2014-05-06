@@ -58,7 +58,7 @@ if(!empty($err))
 if (isset($msg)) { ?> 
 
 	<!-- we're now back in HTML mode but the HTML code will only appear if the condition in the if-statement was true -->
-	<p class="admin_form"><b>You may now <a href = "../login.php">log in</a>!</b></p>
+	<p class="admin_form"><b>The new user may now <a href = "../login.php">log in</a>!</b></p>
 
 <?php //now we enter PHP mode again to close the curly bracket and add the 'else'
 } 

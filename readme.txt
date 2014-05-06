@@ -2,11 +2,17 @@
 How to deploy?
 ==============
 
-1.	Put jdm_products.csv, jdm_shafts.csv, jdm_inquiries.csv into "hci573" folder inside of the MySQL data folder.
+1.	Go to /jdm/csv/ folder and put "jdm_products.csv", "jdm_shafts.csv", "jdm_inquiries.csv" into "hci573" folder inside of the MySQL data folder on your server.
 	(e.g. With WAMP, C:\wamp\bin\mysql\mysql5.6.12\data\hci573)
 
-2.	Run install.php in the root folder to install all tables and insert dummy data into the tables.
+2.	Run /jdm/install.php/ in the root folder to install all tables and insert dummy data into the tables.
 
+3.	Open /jdm/includes/constant/pws.php and input your (real) email username and password to test swiftmailer.
+
+4.	To login to admin area, click on green "admin" text link at the bottom right of the website or type URL /jdm/login.php, use username: chie and password: 1111.
+
+5.	For a test on "import.php" in admin area, open to /jdm/csv/ folder and use "test_club.csv" for uploading club data and "test_shaft.csv" for uploading shaft data. 
+ 
 
 ==============
 Site Structure
@@ -96,20 +102,19 @@ Third Party Library & Codes
 	
 	
 ===========
-Bugs to Fix
+Bugs to Fix (but don't know how)
 ===========
 
-2.	Go to root without logging out
-3.	edit entry
-4.	import without the index (first) row
-
-6.	encrypting swift login info
+1.	Once I logged in to admin area then went back to the pages in the root folder without logging out, the navigation menu is still for admin area.  
+2.	When I import data with CSV files, it saves the first row which is for field names.
+3.	Something wrong with saving Admin user's email address and it does not save correctly.
 
 
 ==================
 Future Development
 ==================
 
-1.	Add a function to send the inquiry data to our order management system via an email
+1.	Add a function to send the inquiry data to our order management system via an email when a customer decided to actually order
+2.	Add an ability to edit products data directly not only by CSV files
 2.	Add a forum page
 3.	Add a blog page

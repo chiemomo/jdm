@@ -11,12 +11,13 @@ define ("DB_PASS", "hci573");
 define ("DB_NAME", "hci573");
 
 //tables
-define ("TABLE_PRODUCTS", "products_jdm_chie");
-define ("TABLE_SHAFTS", "shafts_jdm_chie");
-define ("TABLE_INQUIRIES", "inquiries_jdm_chie");
-define ("USERS", "users_jdm_chie");
-define ("USER_DETAILS", "user_details_jdm_chie");
-define ("USER_BLOG", "user_blog_jdm_chie");
+define ("TABLE_PRODUCTS", "products_jdm_chie2");
+define ("TABLE_SHAFTS", "shafts_jdm_chie2");
+define ("TABLE_INQUIRIES", "inquiries_jdm_chie2");
+define ("USERS", "users_jdm_chie2");
+//define ("USER_DETAILS", "user_details_jdm_chie");
+//define ("USER_BLOG", "user_blog_jdm_chie");
+define ("PSTORE_TABLE", "swift_pw_jdm_chie2");
 
 //connect to the SQL database
 $link = mysql_connect(DB_HOST, DB_USER, DB_PASS) or die("Couldn't make connection.");
@@ -412,7 +413,7 @@ function generate_html_table() {
 		for ($i = 0; $i < mysql_num_fields($query_for_table); $i++) {
 			echo "<th>" . mysql_field_name($query_for_table, $i) . "</th>";
 		}
-		echo "<th>Edit</th>";	
+		//echo "<th>Edit</th>";	
 		echo '</tr>';
 		//for values
 		while($row = mysql_fetch_row($query_for_table)) {
@@ -421,7 +422,7 @@ function generate_html_table() {
 				echo '<td>',$value,'</td>';
 			}
 			//to edit the row
-			echo "<td><a href='edit_blog.php'>edit</td>";
+			//echo "<td><a href='edit_blog.php'>edit</td>";
 			echo '</tr>';
 		}
 		echo '</table><br />';

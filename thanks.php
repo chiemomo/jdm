@@ -56,9 +56,14 @@ $comment = "hello";
 $subscribe = "yes";
 */
 
-//Swift
+//Swift (lecture 15)
+$key = $password_store_key;
 $username = "umikoariko";
-$email_password = "";
+$result = mysql_query("SELECT * , AES_DECRYPT(password, '$key') AS password FROM " .PSTORE_TABLE." WHERE username=AES_ENCRYPT('$username', '$key')") or die(mysql_error());
+
+$row = mysql_fetch_assoc($result);
+$email_password = $row['password'];
+
 $email_from = "umikoariko@gmail.com";
 $from_name = "Fairway Golf, Inc.";
 

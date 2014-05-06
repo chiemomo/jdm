@@ -114,7 +114,7 @@ return_meta("Administrator Login");
 <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" id="login_form" class="admin_form">
 <table cellpadding="5" cellspacing="5" border="0">
 	<tr>
-	<td>Username/Email:</td>
+	<td>Username:</td>
 	<td><input type="text" name="user" value="" class="required" /></td>
 	</tr>
 	<td>Password:</td>
